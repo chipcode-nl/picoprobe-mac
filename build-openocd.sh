@@ -1,7 +1,7 @@
 #!/bin/sh
 # Build OpenOCD on macOS
 cd ~
-brew install libtool automake libusb wget pkg-config gcc texinfo
+brew install libtool automake libusb libusb-compat libftdi hidapi wget pkg-config gcc texinfo
 git clone https://github.com/raspberrypi/openocd.git --branch picoprobe --depth=1
 cd openocd
 ./bootstrap
