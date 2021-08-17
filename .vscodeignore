@@ -1,0 +1,5 @@
+.vscode/**
+.vscode-test/**
+test/**
+.gitignore
+build-openocd.sh
