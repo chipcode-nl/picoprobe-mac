@@ -21,10 +21,36 @@ This Visual Studio Code extension contains the compiled version of OpenOCD with
 support for the Raspberry Pi Pico probe.
 
 # Install
+
+## Prerequisite
+OpenOCD needs a few libraries to run. Install the libraries with homebrew.
+
+### Install homebrew
+If you did not install homebrew install it first. 
+```console
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Install libraries with homebrew 
+```console
+brew install libusb libusb-compat libftdi hidapi
+```
+
+## OpenOCD version with picoprobe
 In Visual Studio Code goto extensions (shift+cmd+x), search for 'chipcode-nl' and install the extension suitable for your operating system.
 
 The extension has paths for OpenOCD. You can use it in tasks.json.
+
 - openocd.bin
+
+```javascript
+"server": "${config:openocd.bin}/openocd",
+"serverArgs": [
+  "-f", "interface/picoprobe.cfg",
+  "-f", "target/rp2040.cfg",
+],
+```
+
 
 Download the Picoprobe UF2 file at the
 [Raspberry Pi Pico getting started](https://www.raspberrypi.org/documentation/pico/getting-started/) website 

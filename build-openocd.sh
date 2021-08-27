@@ -1,10 +1,21 @@
 #!/bin/sh
 # Build OpenOCD on macOS
+
+PREFIX=/Users/Carl/icloud/git/picoprobe-mac
+
+rm -rf bin
+rm -rf share
+
+# libraries
+brew install libusb libusb-compat libftdi hidapi
+# tools
+brew install libtool automake wget pkg-config gcc texinfo
+
 cd ~
-brew install libtool automake libusb libusb-compat libftdi hidapi wget pkg-config gcc texinfo
+rm -rf openocd
 git clone https://github.com/raspberrypi/openocd.git --branch picoprobe --depth=1
 cd openocd
 ./bootstrap
-./configure --enable-picoprobe --disable-werror --prefix=/Users/Carl/icloud/git/picoprobe-mac
-make -j4
+./configure --enable-picoprobe --disable-werror --prefix=$PREFIX
+make clean 
 make install 

@@ -3,7 +3,7 @@
   "displayName": "OpenOCD with Picoprobe for macOS",
   "description": "OpenOCD with Raspberry Pi Picoprobe support for macOS",
   "icon": "images/Raspberry_Picoprobe_512.png",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "preview": false,
   "publisher": "chipcode-nl",
   "engines": {
@@ -22,7 +22,7 @@
             "string",
             "null"
           ],
-          "default": "${env:HOME}/.vscode/extensions/chipcode-nl.picoprobe-mac-1.0.4/bin",
+          "default": "${env:HOME}/.vscode/extensions/chipcode-nl.picoprobe-mac-1.0.5/bin",
           "description": "The path OpenOCD."
         }
       }
@@ -34,7 +34,7 @@
   },
   "license": "GPL-2.0",
   "scripts": {
-    "postinstall": "~/.vscode/extensions/chipcode-nl.picoprobe-mac-1.0.4/symlink.sh"
+    "postinstall": "~/.vscode/extensions/chipcode-nl.picoprobe-mac-1.0.5/symlink.sh"
   },
   "devDependencies": {
     "@types/vscode": "^1.59.0"
