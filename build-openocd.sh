@@ -9,13 +9,18 @@ rm -rf share
 # libraries
 brew install libusb libusb-compat libftdi hidapi
 # tools
-brew install libtool automake wget pkg-config gcc texinfo
+brew install libtool automake wget pkg-config gcc texinfo node 
+
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
+
+npm install -g vsce
 
 cd ~
 rm -rf openocd
-git clone https://github.com/raspberrypi/openocd.git --branch picoprobe --depth=1
+git clone https://github.com/raspberrypi/openocd.git --recursive --branch rp2040 --depth=1
 cd openocd
 ./bootstrap
-./configure --enable-picoprobe --disable-werror --prefix=$PREFIX
+./configure --enable-ftdi --enable-picoprobe --disable-werror --prefix=$PREFIX
 make clean 
 make install 
+
