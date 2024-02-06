@@ -2,7 +2,7 @@
 <svg id="metal_pi" data-name="metal pi" xmlns="http://www.w3.org/2000/svg" width="1000mm" height="1000mm" viewBox="0 0 2834.646 2834.646">
   <g id="Picoprobe">
     <rect id="outline" x="269.291" y="2097.638" width="2296.063" height="566.929" rx="113.386" ry="113.386" fill="#4880c1" stroke="#003270" stroke-miterlimit="10" stroke-width="11.339"/>
-    <text transform="translate(365.968 2519.915)" fill="#fff" font-family="Roboto-Light, Roboto" font-size="475" font-weight="300"><tspan x="0" y="0">Picop</tspan><tspan x="1172.888" y="0" letter-spacing="-.01em">r</tspan><tspan x="1328.052" y="0">obe</tspan></text>
+    <text transform="translate(357.472 2519.915)" fill="#fff" font-family="Roboto-Light, Roboto" font-size="396.85" font-weight="300"><tspan x="0" y="0">Debugp</tspan><tspan x="1342.858" y="0" letter-spacing="-.01em">r</tspan><tspan x="1472.494" y="0">obe</tspan></text>
   </g>
   <g id="Raspberry">
     <path id="background" d="M2551.183,1077.16c0,47.73-1.31,95-3.89,141.74-8.13,147.91-28.88,290.45-60.63,425.19-5.95,25.26-12.29,50.25-19.01,74.95-33.5,123.22-145.69,208.52-273.38,208.52H640.373c-127.69,0-239.88-85.3-273.38-208.52-6.71-24.7-13.05-49.69-19.01-74.95-31.75-134.74-52.5-277.28-60.63-425.19-2.58-46.74-3.89-94.01-3.89-141.74s1.31-94.99,3.88-141.73c8.14-147.91,28.89-290.45,60.64-425.2,5.96-25.26,12.29-50.25,19.01-74.94,33.5-123.22,145.69-208.52,273.38-208.52h1553.91c127.69,0,239.88,85.3,273.38,208.52,6.71,24.69,13.05,49.68,19,74.94,31.75,134.75,52.5,277.29,60.64,425.2,2.57,46.74,3.88,94,3.88,141.73Z" fill="#fff" stroke-width="0"/>

@@ -1,8 +1,8 @@
-# OpenOCD with Raspberry Picoprobe for macOS
+# OpenOCD with Raspberry debugprobe for macOS
 
 <div>
 <img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/macOS.png" alt="macOS" width="40%">
-<img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Picoprobe_512.png" alt="Raspberry Picoprobe" width="40%">
+<img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Picoprobe_512.png" alt="Raspberry Debugprobe" width="40%">
 </div>
 
 In January 2021, the Raspberry Pi Foundation launched its first microcontroller
@@ -36,7 +36,7 @@ If you did not install homebrew install it first.
 brew install libusb libusb-compat libftdi hidapi
 ```
 
-## OpenOCD version with picoprobe
+## OpenOCD version with debugprobe
 In Visual Studio Code goto extensions (shift+cmd+x), search for 'chipcode-nl' and install the extension suitable for your operating system.
 
 The extension has paths for OpenOCD. You can use it in tasks.json.
@@ -52,25 +52,25 @@ The extension has paths for OpenOCD. You can use it in tasks.json.
 ```
 
 
-Download the Picoprobe UF2 file at the
+Download the debugprobe UF2 file at the
 [Raspberry Pi Pico getting started](https://www.raspberrypi.org/documentation/pico/getting-started/) website 
 and copy it to the Raspberry Pi Pico board.
 
 ## Picoprobe Wiring
 <img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Picoprobe_wiring_512.png" alt="Raspberry Picoprobe wiring">
 
-Wiring between the Picoprobe (left) and the target development board (right).
+Wiring between the debugprobe (left) and the target development board (right).
 
-| Picoprobe (left) | Raspberry Pi Pico (right) | Description  |
-|------------------|---------------------------|--------------|
-| GND              | GND                       | Ground       |
-| GP2              | SWCLK                     | Debug clock  |
-| GP3              | SWDIO                     | Debug data   |
-| GP4 / UART1 TX   | GP1 / UART0 RX            | Serial port  |
-| GP5 / UART1 RX   | GP0 / UART0 TX            | Serial port  |
+| Debugprobe (left) | Raspberry Pi Pico (right) | Description  |
+|-------------------|---------------------------|--------------|
+| GND               | GND                       | Ground       |
+| GP2               | SWCLK                     | Debug clock  |
+| GP3               | SWDIO                     | Debug data   |
+| GP4 / UART1 TX    | GP1 / UART0 RX            | Serial port  |
+| GP5 / UART1 RX    | GP0 / UART0 TX            | Serial port  |
 
 Optional power the target development board from the USB port.
 
-| Picoprobe (left) | Raspberry Pi Pico (right) | Description  |
-|------------------|---------------------------|--------------|
-| VSYS             | VSYS                      | System power |
+| Debugprobe (left) | Raspberry Pi Pico (right) | Description  |
+|-------------------|---------------------------|--------------|
+| VSYS              | VSYS                      | System power |
