@@ -2,7 +2,7 @@
 
 <div>
 <img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/macOS.png" alt="macOS" width="40%">
-<img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Picoprobe_512.png" alt="Raspberry Debugprobe" width="40%">
+<img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Debugprobe_512.png" alt="Raspberry Debugprobe" width="40%">
 </div>
 
 In January 2021, the Raspberry Pi Foundation launched its first microcontroller
@@ -56,8 +56,8 @@ Download the debugprobe UF2 file at the
 [Raspberry Pi Pico getting started](https://www.raspberrypi.org/documentation/pico/getting-started/) website 
 and copy it to the Raspberry Pi Pico board.
 
-## Picoprobe Wiring
-<img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Picoprobe_wiring_512.png" alt="Raspberry Picoprobe wiring">
+## Debugprobe Wiring
+<img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Debugprobe_wiring_512.png" alt="Raspberry Debugprobe wiring">
 
 Wiring between the debugprobe (left) and the target development board (right).
 

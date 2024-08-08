@@ -1,14 +1,14 @@
-This is openocd.info, produced by makeinfo version 6.8 from
+This is openocd.info, produced by makeinfo version 7.1 from
 openocd.texi.
 
-This User's Guide documents release 0.11.0, dated 10 February 2022, of
-the Open On-Chip Debugger (OpenOCD).
+This User's Guide documents release 0.11.0, dated 8 August 2024, of the
+Open On-Chip Debugger (OpenOCD).
 
-   * Copyright (C) 2008 The OpenOCD Project
-   * Copyright (C) 2007-2008 Spencer Oliver <spen@spen-soft.co.uk>
-   * Copyright (C) 2008-2010 Oyvind Harboe <oyvind.harboe@zylin.com>
-   * Copyright (C) 2008 Duane Ellis <openocd@duaneellis.com>
-   * Copyright (C) 2009-2010 David Brownell
+   • Copyright © 2008 The OpenOCD Project
+   • Copyright © 2007-2008 Spencer Oliver <spen@spen-soft.co.uk>
+   • Copyright © 2008-2010 Oyvind Harboe <oyvind.harboe@zylin.com>
+   • Copyright © 2008 Duane Ellis <openocd@duaneellis.com>
+   • Copyright © 2009-2010 David Brownell
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -42,13 +42,13 @@ will be performed.
   1. 'init' is executed.
   2. 'reset init' is called to reset and halt the target, any 'reset
      init' scripts are executed.
-  3. 'flash write_image' is called to erase and write any flash using
+  3. ‘flash write_image’ is called to erase and write any flash using
      the filename given.
-  4. If the 'preverify' parameter is given, the target is "verified"
+  4. If the ‘preverify’ parameter is given, the target is "verified"
      first and only flashed if this fails.
-  5. 'verify_image' is called if 'verify' parameter is given.
-  6. 'reset run' is called if 'reset' parameter is given.
-  7. OpenOCD is shutdown if 'exit' parameter is given.
+  5. ‘verify_image’ is called if ‘verify’ parameter is given.
+  6. ‘reset run’ is called if ‘reset’ parameter is given.
+  7. OpenOCD is shutdown if ‘exit’ parameter is given.
 
 An example of usage is given below.  *Note program::.
 
@@ -81,8 +81,8 @@ As it does for JTAG TAPs, debug targets, and flash chips (both NOR and
 NAND), OpenOCD maintains a list of PLDs available for use in various
 commands.  Also, each such PLD requires a driver.
 
-They are referenced by the number shown by the 'pld devices' command,
-and new PLDs are defined by 'pld device driver_name'.
+They are referenced by the number shown by the ‘pld devices’ command,
+and new PLDs are defined by ‘pld device driver_name’.
 
  -- Config Command: pld device driver_name tap_name [driver_options]
      Defines a new PLD device, supported by driver DRIVER_NAME, using
@@ -93,13 +93,13 @@ and new PLDs are defined by 'pld device driver_name'.
      Lists the PLDs and their numbers.
 
  -- Command: pld load num filename
-     Loads the file 'filename' into the PLD identified by NUM.  The file
+     Loads the file ‘filename’ into the PLD identified by NUM.  The file
      format must be inferred by the driver.
 
 14.2 PLD/FPGA Drivers, Options, and Commands
 ============================================
 
-Drivers may support PLD-specific options to the 'pld device' definition
+Drivers may support PLD-specific options to the ‘pld device’ definition
 command, and may also define commands usable only with that particular
 type of PLD.
 
@@ -126,20 +126,20 @@ you, as a human, may want to type and see the output of.  Configuration
 type commands are documented elsewhere.
 
 Intent:
-   * Source Of Commands
+   • Source Of Commands
      OpenOCD commands can occur in a configuration script (discussed
      elsewhere) or typed manually by a human or supplied
      programmatically, or via one of several TCP/IP Ports.
 
-   * From the human
+   • From the human
      A human should interact with the telnet interface (default port:
      4444) or via GDB (default port 3333).
 
-     To issue commands from within a GDB session, use the 'monitor'
-     command, e.g.  use 'monitor poll' to issue the 'poll' command.  All
+     To issue commands from within a GDB session, use the ‘monitor’
+     command, e.g.  use ‘monitor poll’ to issue the ‘poll’ command.  All
      output is relayed through the GDB session.
 
-   * Machine Interface The Tcl interface's intent is to be a machine
+   • Machine Interface The Tcl interface's intent is to be a machine
      interface.  The default Tcl port is 5555.
 
 15.1 Server Commands
@@ -159,17 +159,17 @@ Intent:
      available after the configuration stage has completed.
 
  -- Command: sleep msec [busy]
-     Wait for at least MSEC milliseconds before resuming.  If 'busy' is
+     Wait for at least MSEC milliseconds before resuming.  If ‘busy’ is
      passed, busy-wait instead of sleeping.  (This option is strongly
-     discouraged.)  Useful in connection with script files ('script'
-     command and 'target_name' configuration).
+     discouraged.)  Useful in connection with script files (‘script’
+     command and ‘target_name’ configuration).
 
  -- Command: shutdown [error]
      Close the OpenOCD server, disconnecting all clients (GDB, telnet,
-     other).  If option 'error' is used, OpenOCD will return a non-zero
+     other).  If option ‘error’ is used, OpenOCD will return a non-zero
      exit code to the parent process.
 
-     Like any TCL commands, also 'shutdown' can be redefined, e.g.:
+     Like any TCL commands, also ‘shutdown’ can be redefined, e.g.:
           # redefine shutdown
           rename shutdown original_shutdown
           proc shutdown {} {
@@ -178,7 +178,7 @@ Intent:
               original_shutdown
           }
      If user types CTRL-C or kills OpenOCD, either the command
-     'shutdown' or its replacement will be automatically executed before
+     ‘shutdown’ or its replacement will be automatically executed before
      OpenOCD exits.
 
  -- Command: debug_level [n]
@@ -207,7 +207,7 @@ Intent:
      Specify hostname or IPv4 address on which to listen for incoming
      TCP/IP connections.  By default, OpenOCD will listen on the
      loopback interface only.  If your network environment is safe,
-     'bindto 0.0.0.0' can be used to cover all available interfaces.
+     ‘bindto 0.0.0.0’ can be used to cover all available interfaces.
 
 15.2 Target State handling
 ==========================
@@ -215,7 +215,7 @@ Intent:
 In this section "target" refers to a CPU configured as shown earlier
 (*note CPU Configuration::).  These commands, like many, implicitly
 refer to a current target which is used to perform the various
-operations.  The current target may be changed by using 'targets'
+operations.  The current target may be changed by using ‘targets’
 command with the name of the target which should become current.
 
  -- Command: reg [(number|name) [(value|'force')]]
@@ -254,14 +254,14 @@ command with the name of the target which should become current.
 
  -- Command: halt [ms]
  -- Command: wait_halt [ms]
-     The 'halt' command first sends a halt request to the target, which
-     'wait_halt' doesn't.  Otherwise these behave the same: wait up to
+     The ‘halt’ command first sends a halt request to the target, which
+     ‘wait_halt’ doesn't.  Otherwise these behave the same: wait up to
      MS milliseconds, or 5 seconds if there is no parameter, for the
      target to halt (and enter debug mode).  Using 0 as the MS parameter
      prevents OpenOCD from waiting.
 
           Warning: On ARM cores, software using the _wait for interrupt_
-          operation often blocks the JTAG access needed by a 'halt'
+          operation often blocks the JTAG access needed by a ‘halt’
           command.  This is because that operation also puts the core
           into a low power mode by gating the core clock; but the core
           clock is needed to detect JTAG clock transitions.
@@ -278,7 +278,7 @@ command with the name of the target which should become current.
           you work with a JTAG debugger.  Tasking environments generally
           have idle loops where the body is the _wait for interrupt_
           operation.  (On older cores, it is a coprocessor action; newer
-          cores have a 'wfi' instruction.)  Such loops can just remove
+          cores have a ‘wfi’ instruction.)  Such loops can just remove
           that operation, at the cost of higher power consumption
           (because the CPU is needlessly clocked).
 
@@ -300,13 +300,13 @@ command with the name of the target which should become current.
      the reset sequence._
 
      The optional parameter specifies what should happen after the
-     reset.  If there is no parameter, a 'reset run' is executed.  The
+     reset.  If there is no parameter, a ‘reset run’ is executed.  The
      other options will not work on all systems.  *Note Reset
      Configuration::.
 
-        - run Let the target run
-        - halt Immediately halt the target
-        - init Immediately halt the target, and execute the reset-init
+        − run Let the target run
+        − halt Immediately halt the target
+        − init Immediately halt the target, and execute the reset-init
           script
 
  -- Command: soft_reset_halt
@@ -320,12 +320,12 @@ command with the name of the target which should become current.
  -- Command: adapter assert [signal [assert|deassert signal]]
  -- Command: adapter deassert [signal [assert|deassert signal]]
      Set values of reset signals.  Without parameters returns current
-     status of the signals.  The SIGNAL parameter values may be 'srst',
+     status of the signals.  The SIGNAL parameter values may be ‘srst’,
      indicating that srst signal is to be asserted or deasserted,
-     'trst', indicating that trst signal is to be asserted or
+     ‘trst’, indicating that trst signal is to be asserted or
      deasserted.
 
-     The 'reset_config' command should already have been used to
+     The ‘reset_config’ command should already have been used to
      configure how the board and the adapter treat these two signals,
      and to say if either signal is even present.  *Note Reset
      Configuration::.  Trying to assert a signal that is not present
@@ -338,28 +338,28 @@ command with the name of the target which should become current.
           SRST value, JTAG reset is triggered with TMS and TCK signals
           instead of the TRST signal.  And no matter how that JTAG reset
           is triggered, once the scan chain enters RESET with TRST
-          inactive, TAP 'post-reset' events are delivered to all TAPs
+          inactive, TAP ‘post-reset’ events are delivered to all TAPs
           with handlers for that event.
 
 15.3 I/O Utilities
 ==================
 
 These commands are available when OpenOCD is built with
-'--enable-ioutil'.  They are mainly useful on embedded targets, notably
+‘--enable-ioutil’.  They are mainly useful on embedded targets, notably
 the ZY1000.  Hosts with operating systems have complementary tools.
 
 _Note:_ there are several more such commands.
 
  -- Command: append_file filename [string]*
-     Appends the STRING parameters to the text file 'filename'.  Each
+     Appends the STRING parameters to the text file ‘filename’.  Each
      string except the last one is followed by one space.  The last
      string is followed by a newline.
 
  -- Command: cat filename
-     Reads and displays the text file 'filename'.
+     Reads and displays the text file ‘filename’.
 
  -- Command: cp src_filename dest_filename
-     Copies contents from the file 'src_filename' into 'dest_filename'.
+     Copies contents from the file ‘src_filename’ into ‘dest_filename’.
 
  -- Command: ip
      _No description provided._
@@ -381,10 +381,10 @@ _Note:_ there are several more such commands.
      _No description provided._
 
  -- Command: rm filename
-     Unlinks the file 'filename'.
+     Unlinks the file ‘filename’.
 
  -- Command: trunc filename
-     Removes all data in the file 'filename'.
+     Removes all data in the file ‘filename’.
 
 15.4 Memory access commands
 ===========================
@@ -394,7 +394,7 @@ Often these are used to configure the current target in some special
 way.  For example - one may need to write certain values to the SDRAM
 controller to enable SDRAM.
 
-  1. Use the 'targets' (plural) command to change the current target.
+  1. Use the ‘targets’ (plural) command to change the current target.
   2. In system level scripts these commands are deprecated.  Please use
      their TARGET object siblings to avoid making assumptions about what
      TAP is the current target, or about MMU configuration.
@@ -403,14 +403,14 @@ controller to enable SDRAM.
  -- Command: mdw [phys] addr [count]
  -- Command: mdh [phys] addr [count]
  -- Command: mdb [phys] addr [count]
-     Display contents of address ADDR, as 64-bit doublewords ('mdd'),
-     32-bit words ('mdw'), 16-bit halfwords ('mdh'), or 8-bit bytes
-     ('mdb').  When the current target has an MMU which is present and
+     Display contents of address ADDR, as 64-bit doublewords (‘mdd’),
+     32-bit words (‘mdw’), 16-bit halfwords (‘mdh’), or 8-bit bytes
+     (‘mdb’).  When the current target has an MMU which is present and
      active, ADDR is interpreted as a virtual address.  Otherwise, or if
      the optional PHYS flag is specified, ADDR is interpreted as a
      physical address.  If COUNT is specified, displays that many units.
      (If you want to manipulate the data instead of displaying it, see
-     the 'mem2array' primitives.)
+     the ‘mem2array’ primitives.)
 
  -- Command: mwd [phys] addr doubleword [count]
  -- Command: mww [phys] addr word [count]
@@ -432,16 +432,16 @@ controller to enable SDRAM.
      file named FILENAME.
 
  -- Command: fast_load
-     Loads an image stored in memory by 'fast_load_image' to the current
+     Loads an image stored in memory by ‘fast_load_image’ to the current
      target.  Must be preceded by fast_load_image.
 
  -- Command: fast_load_image filename address [bin|ihex|elf|s19]
-     Normally you should be using 'load_image' or GDB load.  However,
+     Normally you should be using ‘load_image’ or GDB load.  However,
      for testing purposes or when I/O overhead is significant(OpenOCD
      running on an embedded host), storing the image in memory and
      uploading the image to the target can be a way to upload e.g.
      multiple debug sessions when the binary does not change.  Arguments
-     are the same as 'load_image', but the image is stored in OpenOCD
+     are the same as ‘load_image’, but the image is stored in OpenOCD
      host memory, i.e.  does not affect target.  This approach is also
      useful when profiling target programming performance as I/O and
      target programming can easily be profiled separately.
@@ -450,7 +450,7 @@ controller to enable SDRAM.
           max_length]
      Load image from file FILENAME to target memory offset by ADDRESS
      from its load address.  The file format may optionally be specified
-     ('bin', 'ihex', 'elf', or 's19').  In addition the following
+     (‘bin’, ‘ihex’, ‘elf’, or ‘s19’).  In addition the following
      arguments may be specified: MIN_ADDR - ignore data below MIN_ADDR
      (this is w.r.t.  to the target's load address + ADDRESS) MAX_LENGTH
      - maximum number of bytes to load.
@@ -464,18 +464,18 @@ controller to enable SDRAM.
  -- Command: test_image filename [address [bin|ihex|elf]]
      Displays image section sizes and addresses as if FILENAME were
      loaded into target memory starting at ADDRESS (defaults to zero).
-     The file format may optionally be specified ('bin', 'ihex', or
-     'elf')
+     The file format may optionally be specified (‘bin’, ‘ihex’, or
+     ‘elf’)
 
  -- Command: verify_image filename address [bin|ihex|elf]
      Verify FILENAME against target memory starting at ADDRESS.  The
-     file format may optionally be specified ('bin', 'ihex', or 'elf')
+     file format may optionally be specified (‘bin’, ‘ihex’, or ‘elf’)
      This will first attempt a comparison using a CRC checksum, if this
      fails it will try a binary compare.
 
  -- Command: verify_image_checksum filename address [bin|ihex|elf]
      Verify FILENAME against target memory starting at ADDRESS.  The
-     file format may optionally be specified ('bin', 'ihex', or 'elf')
+     file format may optionally be specified (‘bin’, ‘ihex’, or ‘elf’)
      This perform a comparison using a CRC checksum only
 
 15.6 Breakpoint and Watchpoint commands
@@ -488,7 +488,7 @@ addition, CPUs almost always support software breakpoints.
  -- Command: bp [address len [hw]]
      With no parameters, lists all active breakpoints.  Else sets a
      breakpoint on code execution starting at ADDRESS for LENGTH bytes.
-     This is a software breakpoint, unless 'hw' is specified in which
+     This is a software breakpoint, unless ‘hw’ is specified in which
      case it will be a hardware breakpoint.
 
      (*Note arm9 vector_catch: arm9vectorcatch, or *note xscale
@@ -504,7 +504,7 @@ addition, CPUs almost always support software breakpoints.
  -- Command: wp [address len [(r|w|a) [value [mask]]]]
      With no parameters, lists all active watchpoints.  Else sets a data
      watchpoint on data from ADDRESS for LENGTH bytes.  The watch point
-     is an "access" watchpoint unless the 'r' or 'w' parameter is
+     is an "access" watchpoint unless the ‘r’ or ‘w’ parameter is
      provided, defining it as respectively a read or write watchpoint.
      If a VALUE is provided, that value is used when determining if the
      watchpoint should trigger.  The value may be first be masked using
@@ -589,8 +589,8 @@ exposed through the TCP/IP port 9090.
  -- Command: profile seconds filename [start end]
      Profiling samples the CPU's program counter as quickly as possible,
      which is useful for non-intrusive stochastic profiling.  Saves up
-     to 10000 samples in 'filename' using "gmon.out" format.  Optional
-     'start' and 'end' parameters allow to limit the address range.
+     to 10000 samples in ‘filename’ using "gmon.out" format.  Optional
+     ‘start’ and ‘end’ parameters allow to limit the address range.
 
  -- Command: version
      Displays a string identifying the version of this OpenOCD server.
@@ -617,7 +617,7 @@ CPUs based on ARM cores may include standard tracing interfaces, based
 on an "Embedded Trace Module" (ETM) which sends voluminous address and
 data bus trace records to a "Trace Port".
 
-   * Development-oriented boards will sometimes provide a high speed
+   • Development-oriented boards will sometimes provide a high speed
      trace connector for collecting that data, when the particular CPU
      supports such an interface.  (The standard connector is a 38-pin
      Mictor, with both JTAG and trace port support.)  Those trace
@@ -626,7 +626,7 @@ data bus trace records to a "Trace Port".
      megabytes of trace data.  Configuring an ETM coupled to such an
      external trace port belongs in the board-specific configuration
      file.
-   * If the CPU doesn't provide an external interface, it probably has
+   • If the CPU doesn't provide an external interface, it probably has
      an "Embedded Trace Buffer" (ETB) on the chip, which is a dedicated
      SRAM. 4KBytes is one common ETB size.  Configuring an ETM coupled
      only to an ETB belongs in the CPU-specific (target) configuration
@@ -634,7 +634,7 @@ data bus trace records to a "Trace Port".
 
 ETM support in OpenOCD doesn't seem to be widely used yet.
 
-     Issues: ETM support may be buggy, and at least some 'etm config'
+     Issues: ETM support may be buggy, and at least some ‘etm config’
      parameters should be detected by asking the ETM for them.
 
      ETM trigger events could also implement a kind of complex hardware
@@ -669,30 +669,30 @@ ETM setup is coupled with the trace port driver configuration.
 
      Several of the parameters must reflect the trace port capabilities,
      which are a function of silicon capabilities (exposed later using
-     'etm info') and of what hardware is connected to that port (such as
+     ‘etm info’) and of what hardware is connected to that port (such as
      an external pod, or ETB). The WIDTH must be either 4, 8, or 16,
      except with ETMv3.0 and newer modules which may also support 1, 2,
-     24, 32, 48, and 64 bit widths.  (With those versions, 'etm info'
+     24, 32, 48, and 64 bit widths.  (With those versions, ‘etm info’
      also shows whether the selected port width and mode are supported.)
 
-     The MODE must be 'normal', 'multiplexed', or 'demultiplexed'.  The
-     CLOCKING must be 'half' or 'full'.
+     The MODE must be ‘normal’, ‘multiplexed’, or ‘demultiplexed’.  The
+     CLOCKING must be ‘half’ or ‘full’.
 
           Warning: With ETMv3.0 and newer, the bits set with the MODE
           and CLOCKING parameters both control the mode.  This modified
           mode does not map to the values supported by previous ETM
           modules, so this syntax is subject to change.
 
-          Note: You can see the ETM registers using the 'reg' command.
+          Note: You can see the ETM registers using the ‘reg’ command.
           Not all possible registers are present in every ETM. Most of
           the registers are write-only, and are used to configure what
           CPU activities are traced.
 
  -- Command: etm info
      Displays information about the current target's ETM. This includes
-     resource counts from the 'ETM_CONFIG' register, as well as silicon
+     resource counts from the ‘ETM_CONFIG’ register, as well as silicon
      capabilities (except on rather old modules).  from the
-     'ETM_SYS_CONFIG' register.
+     ‘ETM_SYS_CONFIG’ register.
 
  -- Command: etm status
      Displays status of the current target's ETM and trace port driver:
@@ -706,23 +706,23 @@ ETM setup is coupled with the trace port driver configuration.
      changes, tracing is stopped and any buffered trace data is
      invalidated.
 
-        * TYPE ...  describing how data accesses are traced, when they
+        • TYPE ...  describing how data accesses are traced, when they
           pass any ViewData filtering that was set up.  The value is one
-          of 'none' (save nothing), 'data' (save data), 'address' (save
-          addresses), 'all' (save data and addresses)
-        * CONTEXT_ID_BITS ...  0, 8, 16, or 32
-        * CYCLE_ACCURATE ...  'enable' or 'disable' cycle-accurate
+          of ‘none’ (save nothing), ‘data’ (save data), ‘address’ (save
+          addresses), ‘all’ (save data and addresses)
+        • CONTEXT_ID_BITS ...  0, 8, 16, or 32
+        • CYCLE_ACCURATE ...  ‘enable’ or ‘disable’ cycle-accurate
           instruction tracing.  Before ETMv3, enabling this causes much
           extra data to be recorded.
-        * BRANCH_OUTPUT ...  'enable' or 'disable'.  Disable this unless
+        • BRANCH_OUTPUT ...  ‘enable’ or ‘disable’.  Disable this unless
           you need to try reconstructing the instruction trace stream
           without an image of the code.
 
  -- Command: etm trigger_debug (enable|disable)
      Displays whether ETM triggering debug entry (like a breakpoint) is
      enabled or disabled, after optionally modifying that configuration.
-     The default behaviour is 'disable'.  Any change takes effect after
-     the next 'etm start'.
+     The default behaviour is ‘disable’.  Any change takes effect after
+     the next ‘etm start’.
 
      By using script commands to configure ETM registers, you can make
      the processor enter debug state automatically when certain
@@ -737,7 +737,7 @@ be exported to files for later analysis.  It can also be parsed with
 OpenOCD, for basic sanity checking.
 
 To configure what is being traced, you will need to write various trace
-registers using 'reg ETM_*' commands.  For the definitions of these
+registers using ‘reg ETM_*’ commands.  For the definitions of these
 registers, read ARM publication _IHI 0014, "Embedded Trace Macrocell,
 Architecture Specification"_.  Be aware that most of the relevant
 registers are write-only, and that ETM resources are limited.  There are
@@ -746,21 +746,21 @@ so on.
 
 Examples of scenarios you might arrange to trace include:
 
-   * Code flow within a function, _excluding_ subroutines it calls.  Use
+   • Code flow within a function, _excluding_ subroutines it calls.  Use
      address range comparators to enable tracing for instruction access
      within that function's body.
-   * Code flow within a function, _including_ subroutines it calls.  Use
+   • Code flow within a function, _including_ subroutines it calls.  Use
      the sequencer and address comparators to activate tracing on an
      "entered function" state, then deactivate it by exiting that state
      when the function's exit code is invoked.
-   * Code flow starting at the fifth invocation of a function, combining
+   • Code flow starting at the fifth invocation of a function, combining
      one of the above models with a counter.
-   * CPU data accesses to the registers for a particular device, using
+   • CPU data accesses to the registers for a particular device, using
      address range comparators and the ViewData logic.
-   * Such data accesses only during IRQ handling, combining the above
+   • Such data accesses only during IRQ handling, combining the above
      model with sequencer triggers which on entry and exit to the IRQ
      handler.
-   * _...  more_
+   • _...  more_
 
 At this writing, September 2009, there are no Tcl utility procedures to
 help set up any common tracing scenarios.
@@ -770,13 +770,13 @@ help set up any common tracing scenarios.
      Decodes and prints the data that was collected.
 
  -- Command: etm dump filename
-     Stores the captured trace data in 'filename'.
+     Stores the captured trace data in ‘filename’.
 
  -- Command: etm image filename [base_address] [type]
      Opens an image file.
 
  -- Command: etm load filename
-     Loads captured trace data from 'filename'.
+     Loads captured trace data from ‘filename’.
 
  -- Command: etm start
      Starts trace data collection.
@@ -790,7 +790,7 @@ help set up any common tracing scenarios.
 To use an ETM trace port it must be associated with a driver.
 
  -- Trace Port Driver: dummy
-     Use the 'dummy' driver if you are configuring an ETM that's not
+     Use the ‘dummy’ driver if you are configuring an ETM that's not
      connected to anything (on-chip ETB or off-chip trace connector).
      _This driver lets OpenOCD talk to the ETM, but it does not expose
      any trace data collection._
@@ -798,36 +798,36 @@ To use an ETM trace port it must be associated with a driver.
           Associates the ETM for TARGET with a dummy driver.
 
  -- Trace Port Driver: etb
-     Use the 'etb' driver if you are configuring an ETM to use on-chip
+     Use the ‘etb’ driver if you are configuring an ETM to use on-chip
      ETB memory.
       -- Config Command: etb config target etb_tap
           Associates the ETM for TARGET with the ETB at ETB_TAP.  You
-          can see the ETB registers using the 'reg' command.
+          can see the ETB registers using the ‘reg’ command.
       -- Command: etb trigger_percent [percent]
           This displays, or optionally changes, ETB behavior after the
           ETM's configured _trigger_ event fires.  It controls how much
           more trace data is saved after the (single) trace trigger
           becomes active.
 
-             * The default corresponds to _trace around_ usage,
+             • The default corresponds to _trace around_ usage,
                recording 50 percent data before the event and the rest
                afterwards.
-             * The minimum value of PERCENT is 2 percent, recording
+             • The minimum value of PERCENT is 2 percent, recording
                almost exclusively data before the trigger.  Such extreme
                _trace before_ usage can help figure out what caused that
                event to happen.
-             * The maximum value of PERCENT is 100 percent, recording
+             • The maximum value of PERCENT is 100 percent, recording
                data almost exclusively after the event.  This extreme
                _trace after_ usage might help sort out how the event
                caused trouble.
 
  -- Trace Port Driver: oocd_trace
      This driver isn't available unless OpenOCD was explicitly
-     configured with the '--enable-oocd_trace' option.  You probably
+     configured with the ‘--enable-oocd_trace’ option.  You probably
      don't want to configure it unless you've built the appropriate
      prototype hardware; it's _proof-of-concept_ software.
 
-     Use the 'oocd_trace' driver if you are configuring an ETM that's
+     Use the ‘oocd_trace’ driver if you are configuring an ETM that's
      connected to an off-chip trace connector.
 
       -- Config Command: oocd_trace config target tty
@@ -855,11 +855,11 @@ for CTI using the _cti_ group of commands.
      Creates a CTI instance CTI_NAME on the DAP instance DAP_NAME on
      MEM-AP APN.  The BASE_ADDRESS must match the base address of the
      CTI on the respective MEM-AP. All arguments are mandatory.  This
-     creates a new command '$cti_name' which is used for various
+     creates a new command ‘$cti_name’ which is used for various
      purposes including additional configuration.
 
  -- Command: $cti_name enable on|off
-     Enable ('on') or disable ('off') the CTI.
+     Enable (‘on’) or disable (‘off’) the CTI.
 
  -- Command: $cti_name dump
      Displays a register dump of the CTI.
@@ -879,7 +879,7 @@ for CTI using the _cti_ group of commands.
      gate, ungate, set, clear and pulse
 
  -- Command: $cti_name testmode on|off
-     Enable ('on') or disable ('off') the integration test mode of the
+     Enable (‘on’) or disable (‘off’) the integration test mode of the
      CTI.
 
  -- Command: cti names
@@ -895,13 +895,13 @@ available.
 
  -- Command: arm core_state [arm|thumb]
      Displays the core_state, optionally changing it to process either
-     'arm' or 'thumb' instructions.  The target may later be resumed in
+     ‘arm’ or ‘thumb’ instructions.  The target may later be resumed in
      the currently set core_state.  (Processors may also support the
      Jazelle state, but that is not currently supported in OpenOCD.)
 
  -- Command: arm disassemble address [count [thumb]]
      Disassembles COUNT instructions starting at ADDRESS.  If COUNT is
-     not specified, a single instruction is disassembled.  If 'thumb' is
+     not specified, a single instruction is disassembled.  If ‘thumb’ is
      specified, or the low bit of the address is set, Thumb2 (mixed
      16/32-bit) instructions are used; else ARM (32-bit) instructions
      are used.  (Processors may also support the Jazelle state, but
@@ -1035,7 +1035,7 @@ integer core.  They are available in addition to the ARM and ARM7/ARM9
 commands.
 
  -- Command: arm720t cp15 opcode [value]
-     _DEPRECATED - avoid using this.  Use the 'arm mrc' or 'arm mcr'
+     _DEPRECATED - avoid using this.  Use the ‘arm mrc’ or ‘arm mcr’
      commands instead._
 
      Display cp15 register returned by the ARM instruction OPCODE; else
@@ -1058,9 +1058,9 @@ ARM966.
 
      This always finishes by listing the current configuration.  If
      parameters are provided, it first reconfigures the vector catch
-     hardware to intercept 'all' of the hardware vectors, 'none' of
-     them, or a list with one or more of the following: 'reset' 'undef'
-     'swi' 'pabt' 'dabt' 'irq' 'fiq'.
+     hardware to intercept ‘all’ of the hardware vectors, ‘none’ of
+     them, or a list with one or more of the following: ‘reset’ ‘undef’
+     ‘swi’ ‘pabt’ ‘dabt’ ‘irq’ ‘fiq’.
 
 16.4.4 ARM920T specific commands
 --------------------------------
@@ -1082,7 +1082,7 @@ ARM9 commands.
      ARM920T TRM. (Not all registers can be written.)
 
  -- Command: arm920t cp15i opcode [value [address]]
-     _DEPRECATED - avoid using this.  Use the 'arm mrc' or 'arm mcr'
+     _DEPRECATED - avoid using this.  Use the ‘arm mrc’ or ‘arm mcr’
      commands instead._
 
      Interpreted access using ARM instruction OPCODE, which should be
@@ -1092,10 +1092,10 @@ ARM9 commands.
      specified ADDRESS, or using zero if no other address is provided.
 
  -- Command: arm920t read_cache filename
-     Dump the content of ICache and DCache to a file named 'filename'.
+     Dump the content of ICache and DCache to a file named ‘filename’.
 
  -- Command: arm920t read_mmu filename
-     Dump the content of the ITLB and DTLB to a file named 'filename'.
+     Dump the content of the ITLB and DTLB to a file named ‘filename’.
 
 16.4.5 ARM926ej-s specific commands
 -----------------------------------
@@ -1138,7 +1138,7 @@ handler.  However, this means that the complete first cacheline in the
 mini-IC is marked valid, which makes the CPU fetch all exception
 handlers from the mini-IC, ignoring the code in RAM.
 
-To address this situation, OpenOCD provides the 'xscale vector_table'
+To address this situation, OpenOCD provides the ‘xscale vector_table’
 command, which allows the user to explicitly write individual entries to
 either the high or low vector table stored in the mini-IC.
 
@@ -1169,7 +1169,7 @@ Alternatively, you may choose to keep some or all of the mini-IC vector
 table entries synced with those written to memory by your system
 software.  The mini-IC can not be modified while the processor is
 executing, but for each vector table entry not previously defined using
-the 'xscale vector_table' command, OpenOCD will copy the value from
+the ‘xscale vector_table’ command, OpenOCD will copy the value from
 memory to the mini-IC every time execution resumes from a halt.  This is
 done for both high and low vector tables (although the table not in use
 may not be mapped to valid memory, and in this case that copy operation
@@ -1183,13 +1183,13 @@ location if you're not sure.  Note that the same situation exists any
 time the vector table is modified by the system software.
 
 The debug handler must be placed somewhere in the address space using
-the 'xscale debug_handler' command.  The allowed locations for the debug
+the ‘xscale debug_handler’ command.  The allowed locations for the debug
 handler are either (0x800 - 0x1fef800) or (0xfe000800 - 0xfffff800).
 The default value is 0xfe000800.
 
 XScale has resources to support two hardware breakpoints and two
 watchpoints.  However, the following restrictions on watchpoint
-functionality apply: (1) the value and mask arguments to the 'wp'
+functionality apply: (1) the value and mask arguments to the ‘wp’
 command are not supported, (2) the watchpoint length must be a power of
 two and not less than four, and can not be greater than the watchpoint
 address, and (3) a watchpoint with a length greater than four consumes
@@ -1220,7 +1220,7 @@ implementations of the ARMv5TE architecture.
      Enables or disable the CPU's data cache.
 
  -- Command: xscale dump_trace filename
-     Dumps the raw contents of the trace buffer to 'filename'.
+     Dumps the raw contents of the trace buffer to ‘filename’.
 
  -- Command: xscale icache [enable|disable]
      Enables or disable the CPU's instruction cache.
@@ -1233,10 +1233,10 @@ implementations of the ARMv5TE architecture.
      disabling the trace buffer and modifying how it is emptied.
 
  -- Command: xscale trace_image filename [offset [type]]
-     Opens a trace image from 'filename', optionally rebasing its
-     segment addresses by OFFSET.  The image TYPE may be one of 'bin'
-     (binary), 'ihex' (Intel hex), 'elf' (ELF file), 's19' (Motorola
-     s19), 'mem', or 'builder'.
+     Opens a trace image from ‘filename’, optionally rebasing its
+     segment addresses by OFFSET.  The image TYPE may be one of ‘bin’
+     (binary), ‘ihex’ (Intel hex), ‘elf’ (ELF file), ‘s19’ (Motorola
+     s19), ‘mem’, or ‘builder’.
 
  -- Command: xscale vector_catch [mask]
      Display a bitmask showing the hardware vectors to catch.  If the
@@ -1370,33 +1370,33 @@ implementations of the ARMv5TE architecture.
      trace-config handler for trace port to be activated.
 
      Command options:
-        - 'disable' disable TPIU handling;
-        - 'external' configure TPIU to let user capture trace output
+        − ‘disable’ disable TPIU handling;
+        − ‘external’ configure TPIU to let user capture trace output
           externally (with an additional UART or logic analyzer
           hardware).
-        - 'internal (FILENAME | :PORT | -)' configure TPIU and debug
+        − ‘internal (FILENAME | :PORT | -)’ configure TPIU and debug
           adapter to gather trace data then:
 
-             - append it to a regular file or a named pipe if FILENAME
+             − append it to a regular file or a named pipe if FILENAME
                is specified.
-             - listen to a TCP/IP port if :PORT is specified, then
+             − listen to a TCP/IP port if :PORT is specified, then
                broadcast the trace data over this port.
-             - if '-' is specified, OpenOCD will forward trace data to
-               'tcl_trace' command.
+             − if '-' is specified, OpenOCD will forward trace data to
+               ‘tcl_trace’ command.
                Note: while broadcasting to file or TCP, the forwarding
-               to 'tcl_trace' will remain active.
+               to ‘tcl_trace’ will remain active.
 
-        - 'sync PORT_WIDTH' use synchronous parallel trace output mode,
+        − ‘sync PORT_WIDTH’ use synchronous parallel trace output mode,
           and set port width to PORT_WIDTH.
-        - 'manchester' use asynchronous SWO mode with Manchester coding.
-        - 'uart' use asynchronous SWO mode with NRZ (same as regular
+        − ‘manchester’ use asynchronous SWO mode with Manchester coding.
+        − ‘uart’ use asynchronous SWO mode with NRZ (same as regular
           UART 8N1) coding.
-        - FORMATTER_ENABLE is 'on' or 'off' to enable or disable TPIU
+        − FORMATTER_ENABLE is ‘on’ or ‘off’ to enable or disable TPIU
           formatter which needs to be used when both ITM and ETM data is
           to be output via SWO.
-        - TRACECLKIN_FREQ this should be specified to match target's
+        − TRACECLKIN_FREQ this should be specified to match target's
           current TRACECLKIN frequency (usually the same as HCLK).
-        - TRACE_FREQ trace port frequency.  Can be omitted in internal
+        − TRACE_FREQ trace port frequency.  Can be omitted in internal
           mode to let the adapter driver select the maximum supported
           rate automatically.
 
@@ -1410,15 +1410,15 @@ implementations of the ARMv5TE architecture.
                    ...
           (the most obvious way is to use the first stimulus port for
           printf, for that this ITM_STIM8 assignment can be used inside
-          _write(); to make it blocking to avoid data loss, add 'while
-          (!(ITM_STIM8(0) & ITM_STIM_FIFOREADY));');
+          _write(); to make it blocking to avoid data loss, add ‘while
+          (!(ITM_STIM8(0) & ITM_STIM_FIFOREADY));’);
        2. An FT2232H UART is connected to the SWO pin of the board;
        3. Commands to configure UART for 12MHz baud rate:
                $ setserial /dev/ttyUSB1 spd_cust divisor 5
                $ stty -F /dev/ttyUSB1 38400
           (FT2232H's base frequency is 60MHz, spd_cust allows to alias
           38400 baud with our custom divisor to get 12MHz)
-       4. 'itmdump -f /dev/ttyUSB1 -d1'
+       4. ‘itmdump -f /dev/ttyUSB1 -d1’
        5. OpenOCD invocation line:
                openocd -f interface/stlink.cfg \
                        -c "transport select hla_swd" \
@@ -1438,7 +1438,7 @@ implementations of the ARMv5TE architecture.
  -- Command: cortex_m maskisr (auto|on|off|steponly)
      Control masking (disabling) interrupts during target step/resume.
 
-     The 'auto' option handles interrupts during stepping in a way that
+     The ‘auto’ option handles interrupts during stepping in a way that
      they get served but don't disturb the program flow.  The step
      command first allows pending interrupt handlers to execute, then
      disables interrupts and steps over the next instruction where the
@@ -1446,29 +1446,29 @@ implementations of the ARMv5TE architecture.
      the interrupt handlers don't complete within 500ms, the step
      command leaves with the core running.
 
-     The 'steponly' option disables interrupts during single-stepping
+     The ‘steponly’ option disables interrupts during single-stepping
      but enables them during normal execution.  This can be used as a
      partial workaround for 702596 erratum in Cortex-M7 r0p1.  See
      "Cortex-M7 (AT610) and Cortex-M7 with FPU (AT611) Software
      Developer Errata Notice" from ARM for further details.
 
      Note that a free hardware (FPB) breakpoint is required for the
-     'auto' option.  If no breakpoint is available at the time of the
+     ‘auto’ option.  If no breakpoint is available at the time of the
      step, then the step is taken with interrupts enabled, i.e.  the
-     same way the 'off' option does.
+     same way the ‘off’ option does.
 
-     Default is 'auto'.
+     Default is ‘auto’.
 
  -- Command: cortex_m vector_catch [all|none|list]
      Vector Catch hardware provides dedicated breakpoints for certain
      hardware events.
 
-     Parameters request interception of 'all' of these hardware event
-     vectors, 'none' of them, or one or more of the following:
-     'hard_err' for a HardFault exception; 'mm_err' for a MemManage
-     exception; 'bus_err' for a BusFault exception; 'irq_err',
-     'state_err', 'chk_err', or 'nocp_err' for various UsageFault
-     exceptions; or 'reset'.  If NVIC setup code does not enable them,
+     Parameters request interception of ‘all’ of these hardware event
+     vectors, ‘none’ of them, or one or more of the following:
+     ‘hard_err’ for a HardFault exception; ‘mm_err’ for a MemManage
+     exception; ‘bus_err’ for a BusFault exception; ‘irq_err’,
+     ‘state_err’, ‘chk_err’, or ‘nocp_err’ for various UsageFault
+     exceptions; or ‘reset’.  If NVIC setup code does not enable them,
      MemManage, BusFault, and UsageFault exceptions are mapped to
      HardFault.  UsageFault checks for divide-by-zero and unaligned
      access must also be explicitly enabled.
@@ -1479,16 +1479,16 @@ implementations of the ARMv5TE architecture.
      Control reset handling if hardware srst is not fitted *Note
      reset_config: reset_config.
 
-        - 'sysresetreq' use AIRCR SYSRESETREQ to reset system.
-        - 'vectreset' use AIRCR VECTRESET to reset system (default).
+        − ‘sysresetreq’ use AIRCR SYSRESETREQ to reset system.
+        − ‘vectreset’ use AIRCR VECTRESET to reset system (default).
 
-     Using 'vectreset' is a safe option for Cortex-M3, M4 and M7 cores.
+     Using ‘vectreset’ is a safe option for Cortex-M3, M4 and M7 cores.
      This however has the disadvantage of only resetting the core, all
      peripherals are unaffected.  A solution would be to use a
-     'reset-init' event handler to manually reset the peripherals.
+     ‘reset-init’ event handler to manually reset the peripherals.
      *Note Target Events: targetevents.
 
-     Cortex-M0, M0+ and M1 do not support 'vectreset', use 'sysresetreq'
+     Cortex-M0, M0+ and M1 do not support ‘vectreset’, use ‘sysresetreq’
      instead.
 
 16.6.5 ARMv8-A specific commands
@@ -1502,7 +1502,7 @@ implementations of the ARMv5TE architecture.
      power-down and reset indications.  It also establishes the
      expected, basic cross-trigger configuration the aarch64 target code
      relies on.  In a configuration file, the command would typically be
-     called from a 'reset-end' or 'reset-deassert-post' handler, to
+     called from a ‘reset-end’ or ‘reset-deassert-post’ handler, to
      re-enable debugging after a system reset.  However, normally it is
      not necessary to use the command at all.
 
@@ -1515,21 +1515,21 @@ implementations of the ARMv5TE architecture.
      handling influences the way targets in an SMP group are handled by
      the run control.  With SMP handling enabled, issuing halt or resume
      to one core will trigger halting or resuming of all cores in the
-     group.  The command 'target smp' defines which targets are in the
+     group.  The command ‘target smp’ defines which targets are in the
      SMP group.  With SMP handling disabled, all targets need to be
      treated individually.
 
  -- Command: aarch64 maskisr [on|off]
      Selects whether interrupts will be processed when single stepping.
-     The default configuration is 'on'.
+     The default configuration is ‘on’.
 
  -- Command: $target_name catch_exc
           [off|sec_el1|sec_el3|nsec_el1|nsec_el2]+
-     Cause '$target_name' to halt when an exception is taken.  Any
+     Cause ‘$target_name’ to halt when an exception is taken.  Any
      combination of Secure (sec) EL1/EL3 or Non-Secure (nsec) EL1/EL2 is
-     valid.  The target '$target_name' will halt before taking the
+     valid.  The target ‘$target_name’ will halt before taking the
      exception.  In order to resume the target, the exception catch must
-     be disabled again with '$target_name catch_exc off'.  Issuing the
+     be disabled again with ‘$target_name catch_exc off’.  Issuing the
      command without options prints the current configuration.
 
 16.7 EnSilica eSi-RISC Architecture
@@ -1544,14 +1544,14 @@ embedded systems provided by EnSilica.  (See:
 
  -- Command: esirisc cache_arch (harvard|von_neumann)
      Configure the caching architecture.  Targets with the
-     'UNIFIED_ADDRESS_SPACE' option disabled employ a Harvard
-     architecture.  By default, 'von_neumann' is assumed.
+     ‘UNIFIED_ADDRESS_SPACE’ option disabled employ a Harvard
+     architecture.  By default, ‘von_neumann’ is assumed.
 
  -- Command: esirisc hwdc (all|none|mask ...)
      Configure hardware debug control.  The HWDC register controls which
      exceptions return control back to the debugger.  Possible masks are
-     'all', 'none', 'reset', 'interrupt', 'syscall', 'error', and
-     'debug'.  By default, 'reset', 'error', and 'debug' are enabled.
+     ‘all’, ‘none’, ‘reset’, ‘interrupt’, ‘syscall’, ‘error’, and
+     ‘debug’.  By default, ‘reset’, ‘error’, and ‘debug’ are enabled.
 
 16.7.2 eSi-RISC Operation
 -------------------------
@@ -1568,9 +1568,9 @@ eSi-RISC targets may be configured with support for instruction tracing.
 Trace data may be written to an in-memory buffer or FIFO. If a FIFO is
 configured, DMA is typically employed to move trace data off-device
 using a high-speed peripheral (eg.  SPI). Collected trace data is
-encoded in one of three different formats.  At a minimum, 'esirisc trace
-buffer' or 'esirisc trace fifo' must be issued along with 'esirisc trace
-format' before trace data can be collected.
+encoded in one of three different formats.  At a minimum, ‘esirisc trace
+buffer’ or ‘esirisc trace fifo’ must be issued along with ‘esirisc trace
+format’ before trace data can be collected.
 
 OpenOCD provides rudimentary analysis of collected trace data.  If more
 detail is needed, collected trace data can be dumped to a file and
@@ -1579,7 +1579,7 @@ processed by external tooling.
      Issues: OpenOCD is unable to process trace data sent to a FIFO. A
      potential workaround for this issue is to configure DMA to copy
      trace data to an in-memory buffer, which can then be passed to the
-     'esirisc trace analyze' and 'esirisc trace dump' commands.
+     ‘esirisc trace analyze’ and ‘esirisc trace dump’ commands.
 
      It is possible to corrupt trace data when using a FIFO if the
      peripheral responsible for draining data from the FIFO is not fast
@@ -1588,7 +1588,7 @@ processed by external tooling.
 
  -- Command: esirisc trace buffer address size [wrap]
      Configure trace buffer using the provided address and size.  If the
-     'wrap' option is specified, trace collection will continue once the
+     ‘wrap’ option is specified, trace collection will continue once the
      end of the buffer is reached.  By default, wrap is disabled.
 
  -- Command: esirisc trace fifo address
@@ -1600,16 +1600,16 @@ processed by external tooling.
 
  -- Command: esirisc trace format (full|branch|icache) pc_bits
      Configure trace format and number of PC bits to be captured.
-     'pc_bits' must be within 1 and 31 as the LSB is not collected.  If
+     ‘pc_bits’ must be within 1 and 31 as the LSB is not collected.  If
      external tooling is used to analyze collected trace data, these
      values must match.
 
      Supported trace formats:
-        * 'full' capture full trace data, allowing execution history and
+        • ‘full’ capture full trace data, allowing execution history and
           timing to be determined.
-        * 'branch' capture taken branch instructions and branch target
+        • ‘branch’ capture taken branch instructions and branch target
           addresses.
-        * 'icache' capture instruction cache misses.
+        • ‘icache’ capture instruction cache misses.
 
  -- Command: esirisc trace trigger start (condition) [start_data
           start_mask]
@@ -1619,20 +1619,20 @@ processed by external tooling.
      Architecture Manual.
 
      Supported conditions:
-        * 'none' manual tracing (see 'esirisc trace start').
-        * 'pc' start tracing if the PC matches start data and mask.
-        * 'load' start tracing if the effective address of a load
+        • ‘none’ manual tracing (see ‘esirisc trace start’).
+        • ‘pc’ start tracing if the PC matches start data and mask.
+        • ‘load’ start tracing if the effective address of a load
           instruction matches start data and mask.
-        * 'store' start tracing if the effective address of a store
+        • ‘store’ start tracing if the effective address of a store
           instruction matches start data and mask.
-        * 'exception' start tracing if the EID of an exception matches
+        • ‘exception’ start tracing if the EID of an exception matches
           start data and mask.
-        * 'eret' start tracing when an 'ERET' instruction is executed.
-        * 'wait' start tracing when a 'WAIT' instruction is executed.
-        * 'stop' start tracing when a 'STOP' instruction is executed.
-        * 'high' start tracing when an external signal is a logical
+        • ‘eret’ start tracing when an ‘ERET’ instruction is executed.
+        • ‘wait’ start tracing when a ‘WAIT’ instruction is executed.
+        • ‘stop’ start tracing when a ‘STOP’ instruction is executed.
+        • ‘high’ start tracing when an external signal is a logical
           high.
-        * 'low' start tracing when an external signal is a logical low.
+        • ‘low’ start tracing when an external signal is a logical low.
 
  -- Command: esirisc trace trigger stop (condition) [stop_data
           stop_mask]
@@ -1642,26 +1642,26 @@ processed by external tooling.
      Architecture Manual.
 
      Supported conditions:
-        * 'none' manual tracing (see 'esirisc trace stop').
-        * 'pc' stop tracing if the PC matches stop data and mask.
-        * 'load' stop tracing if the effective address of a load
+        • ‘none’ manual tracing (see ‘esirisc trace stop’).
+        • ‘pc’ stop tracing if the PC matches stop data and mask.
+        • ‘load’ stop tracing if the effective address of a load
           instruction matches stop data and mask.
-        * 'store' stop tracing if the effective address of a store
+        • ‘store’ stop tracing if the effective address of a store
           instruction matches stop data and mask.
-        * 'exception' stop tracing if the EID of an exception matches
+        • ‘exception’ stop tracing if the EID of an exception matches
           stop data and mask.
-        * 'eret' stop tracing when an 'ERET' instruction is executed.
-        * 'wait' stop tracing when a 'WAIT' instruction is executed.
-        * 'stop' stop tracing when a 'STOP' instruction is executed.
+        • ‘eret’ stop tracing when an ‘ERET’ instruction is executed.
+        • ‘wait’ stop tracing when a ‘WAIT’ instruction is executed.
+        • ‘stop’ stop tracing when a ‘STOP’ instruction is executed.
 
  -- Command: esirisc trace trigger delay (trigger) [cycles]
      Configure trigger start/stop delay in clock cycles.
 
      Supported triggers:
-        * 'none' no delay to start or stop collection.
-        * 'start' delay 'cycles' after trigger to start collection.
-        * 'stop' delay 'cycles' after trigger to stop collection.
-        * 'both' delay 'cycles' after both triggers to start or stop
+        • ‘none’ no delay to start or stop collection.
+        • ‘start’ delay ‘cycles’ after trigger to start collection.
+        • ‘stop’ delay ‘cycles’ after trigger to stop collection.
+        • ‘both’ delay ‘cycles’ after both triggers to start or stop
           collection.
 
 16.7.4 eSi-Trace Operation
@@ -1688,13 +1688,13 @@ processed by external tooling.
      Analyze collected trace data.  This command may only be used if a
      trace buffer has been configured.  If a trace FIFO has been
      configured, trace data must be copied to an in-memory buffer
-     identified by the 'address' and 'size' options using DMA.
+     identified by the ‘address’ and ‘size’ options using DMA.
 
  -- Command: esirisc trace dump [address size] filename
      Dump collected trace data to file.  This command may only be used
      if a trace buffer has been configured.  If a trace FIFO has been
      configured, trace data must be copied to an in-memory buffer
-     identified by the 'address' and 'size' options using DMA.
+     identified by the ‘address’ and ‘size’ options using DMA.
 
 16.8 Intel Architecture
 =======================
@@ -1705,11 +1705,11 @@ is codenamed Lakemont.  Lakemont version 1 (LMT1) is used in X10xx.  The
 CPU TAP (Lakemont TAP) is used for software debug and the CLTAP is used
 for SoC level operations.  Useful docs are here:
 https://communities.intel.com/community/makers/documentation
-   * Intel Quark SoC X1000 OpenOCD/GDB/Eclipse App Note (web search for
+   • Intel Quark SoC X1000 OpenOCD/GDB/Eclipse App Note (web search for
      doc num 330015)
-   * Intel Quark SoC X1000 Debug Operations User Guide (web search for
+   • Intel Quark SoC X1000 Debug Operations User Guide (web search for
      doc num 329866)
-   * Intel Quark SoC X1000 Datasheet (web search for doc num 329676)
+   • Intel Quark SoC X1000 Datasheet (web search for doc num 329676)
 
 16.8.1 x86 32-bit specific commands
 -----------------------------------
@@ -1871,7 +1871,7 @@ same, and OpenOCD exposes each hart as a separate core.
      selection of IR values.
 
      When utilizing version 0.11 of the RISC-V Debug Specification,
-     'dtmcs' and 'dmi' set the IR values for the DTMCONTROL and DBUS
+     ‘dtmcs’ and ‘dmi’ set the IR values for the DTMCONTROL and DBUS
      registers, respectively.
 
  -- Command: riscv use_bscan_tunnel value
@@ -1899,7 +1899,7 @@ same, and OpenOCD exposes each hart as a separate core.
 
 The following commands can be used to authenticate to a RISC-V system.
 Eg.  a trivial challenge-response protocol could be implemented as
-follows in a configuration file, immediately following 'init':
+follows in a configuration file, immediately following ‘init’:
      set challenge [riscv authdata_read]
      riscv authdata_write [expr $challenge + 1]
 
@@ -1951,19 +1951,19 @@ features discovery.
      register is marked as not existing.  CONFIGPARAMS must have
      following required arguments:
 
-        * '-name' name
+        • ‘-name’ name
           Name of a register.
 
-        * '-num' number
+        • ‘-num’ number
           Architectural register number: core register number or AUX
           register number.
 
-        * '-feature' XML_feature
+        • ‘-feature’ XML_feature
           Name of GDB XML target description feature.
 
      CONFIGPARAMS may have following optional arguments:
 
-        * '-gdbnum' number
+        • ‘-gdbnum’ number
           GDB register number.  It is recommended to not assign GDB
           register number manually, because there would be a risk that
           two register will have same number.  When register GDB number
@@ -1971,26 +1971,26 @@ features discovery.
           register number + 1.  This option is required only for those
           registers that must be at particular address expected by GDB.
 
-        * '-core'
+        • ‘-core’
           This option specifies that register is a core registers.  If
           not - this is an AUX register.  AUX registers and core
           registers reside in different address spaces.
 
-        * '-bcr'
+        • ‘-bcr’
           This options specifies that register is a BCR register.  BCR
           means Build Configuration Registers - this is a special type
           of AUX registers that are read only and non-volatile, that is
           - they never change their value.  Therefore OpenOCD never
           invalidates values of those registers in internal caches.
           Because BCR is a type of AUX registers, this option cannot be
-          used with '-core'.
+          used with ‘-core’.
 
-        * '-type' type_name
+        • ‘-type’ type_name
           Name of type of this register.  This can be either one of the
-          basic GDB types, or a custom types described with 'arc
-          add-reg-type-[flags|struct]'.
+          basic GDB types, or a custom types described with ‘arc
+          add-reg-type-[flags|struct]’.
 
-        * '-g'
+        • ‘-g’
           If specified then this is a "general" register.  General
           registers are always read by OpenOCD on context save (when
           core has just been halted) and is always transferred to GDB
@@ -2001,14 +2001,14 @@ features discovery.
 
  -- Config Command: arc add-reg-type-flags -name name flags...
      Adds new register type of "flags" class.  "Flags" types can contain
-     only one-bit fields.  Each flag definition looks like '-flag name
-     bit-position'.
+     only one-bit fields.  Each flag definition looks like ‘-flag name
+     bit-position’.
 
  -- Config Command: arc add-reg-type-struct -name name structs...
      Adds new register type of "struct" class.  "Struct" types can
      contain either bit-fields or fields of other types, however at the
      moment only bit fields are supported.  Structure bit field
-     definition looks like '-bitfield name startbit endbit'.
+     definition looks like ‘-bitfield name startbit endbit’.
 
  -- Command: arc get-reg-field reg-name field-name
      Returns value of bit-field in a register.  Register must be
@@ -2029,7 +2029,7 @@ features discovery.
      register can be operated by other means.
 
  -- Command: arc jtag set-core-reg regnum value
-     This command is similar to 'arc jtag set-aux-reg' but is for core
+     This command is similar to ‘arc jtag set-aux-reg’ but is for core
      registers.
 
  -- Command: arc jtag get-aux-reg regnum
@@ -2039,7 +2039,7 @@ features discovery.
      use if that register can be operated by other means.
 
  -- Command: arc jtag get-core-reg regnum
-     This command is similar to 'arc jtag get-aux-reg' but is for core
+     This command is similar to ‘arc jtag get-aux-reg’ but is for core
      registers.
 
 16.12 STM8 Architecture
@@ -2059,20 +2059,20 @@ target uses appropriate libraries.  The most powerful mechanism is
 semihosting, but there is also a lighter weight mechanism using only the
 DCC channel.
 
-Currently 'target_request debugmsgs' is supported only for 'arm7_9' and
-'cortex_m' cores.  These messages are received as part of target
-polling, so you need to have 'poll on' active to receive them.  They are
+Currently ‘target_request debugmsgs’ is supported only for ‘arm7_9’ and
+‘cortex_m’ cores.  These messages are received as part of target
+polling, so you need to have ‘poll on’ active to receive them.  They are
 intrusive in that they will affect program execution times.  If that is
 a problem, *note ARM Hardware Tracing: armhardwaretracing.
 
-See 'libdcc' in the contrib dir for more details.  In addition to
+See ‘libdcc’ in the contrib dir for more details.  In addition to
 sending strings, characters, and arrays of various size integers from
-the target, 'libdcc' also exports a software trace point mechanism.  The
+the target, ‘libdcc’ also exports a software trace point mechanism.  The
 target being debugged may issue trace messages which include a 24-bit
-"trace point" number.  Trace point support includes two distinct
+“trace point” number.  Trace point support includes two distinct
 mechanisms, each supported by a command:
 
-   * _History_ ...  A circular buffer of trace points can be set up, and
+   • _History_ ...  A circular buffer of trace points can be set up, and
      then displayed at any time.  This tracks where code has been, which
      can be invaluable in finding out how some fault was triggered.
 
@@ -2080,7 +2080,7 @@ mechanisms, each supported by a command:
      It may be useful to use some of the 24 bits to represent a
      particular event, and other bits to hold data.
 
-   * _Counting_ ...  An array of counters can be set up, and then
+   • _Counting_ ...  An array of counters can be set up, and then
      displayed at any time.  This can help establish code coverage and
      identify hot spots.
 
@@ -2090,35 +2090,35 @@ mechanisms, each supported by a command:
 Linux-ARM kernels have a "Kernel low-level debugging via EmbeddedICE DCC
 channel" option (CONFIG_DEBUG_ICEDCC, depends on CONFIG_DEBUG_LL) which
 uses this mechanism to deliver messages before a serial console can be
-activated.  This is not the same format used by 'libdcc'.  Other
+activated.  This is not the same format used by ‘libdcc’.  Other
 software, such as the U-Boot boot loader, sometimes does the same thing.
 
  -- Command: target_request debugmsgs [enable|disable|charmsg]
      Displays current handling of target DCC message requests.  These
      messages may be sent to the debugger while the target is running.
-     The optional 'enable' and 'charmsg' parameters both enable the
-     messages, while 'disable' disables them.
+     The optional ‘enable’ and ‘charmsg’ parameters both enable the
+     messages, while ‘disable’ disables them.
 
-     With 'charmsg' the DCC words each contain one character, as used by
+     With ‘charmsg’ the DCC words each contain one character, as used by
      Linux with CONFIG_DEBUG_ICEDCC; otherwise the libdcc format is
      used.
 
  -- Command: trace history [clear|count]
      With no parameter, displays all the trace points that have
-     triggered in the order they triggered.  With the parameter 'clear',
+     triggered in the order they triggered.  With the parameter ‘clear’,
      erases all current trace history records.  With a COUNT parameter,
      allocates space for that many history records.
 
  -- Command: trace point [clear|identifier]
      With no parameter, displays all trace point identifiers and how
-     many times they have been triggered.  With the parameter 'clear',
+     many times they have been triggered.  With the parameter ‘clear’,
      erases all current trace point counters.  With a numeric IDENTIFIER
      parameter, creates a new a trace point counter and associates it
      with that identifier.
 
      _Important:_ The identifier and the trace point number are not
      related except by this command.  These trace point numbers always
-     start at zero (from server startup, or after 'trace point clear')
+     start at zero (from server startup, or after ‘trace point clear’)
      and count up from there.
 
 
@@ -2136,19 +2136,19 @@ operations such as reset or initialization.
 To use these commands you will need to understand some of the basics of
 JTAG, including:
 
-   * A JTAG scan chain consists of a sequence of individual TAP devices
+   • A JTAG scan chain consists of a sequence of individual TAP devices
      such as a CPUs.
-   * Control operations involve moving each TAP through the same
+   • Control operations involve moving each TAP through the same
      standard state machine (in parallel) using their shared TMS and
      clock signals.
-   * Data transfer involves shifting data through the chain of
+   • Data transfer involves shifting data through the chain of
      instruction or data registers of each TAP, writing new register
      values while the reading previous ones.
-   * Data register sizes are a function of the instruction active in a
+   • Data register sizes are a function of the instruction active in a
      given TAP, while instruction register sizes are fixed for each TAP.
      All TAPs support a BYPASS instruction with a single bit data
      register.
-   * The way OpenOCD differentiates between TAP devices is by shifting
+   • The way OpenOCD differentiates between TAP devices is by shifting
      different instructions into (and out of) their instruction
      registers.
 
@@ -2205,7 +2205,7 @@ commands are not available.
  -- Command: irscan [tap instruction]+ [-endstate tap_state]
      For each TAP listed, loads the instruction register with its
      associated numeric INSTRUCTION.  (The number of bits in that
-     instruction may be displayed using the 'scan_chain' command.)  For
+     instruction may be displayed using the ‘scan_chain’ command.)  For
      other TAPs, a BYPASS instruction is loaded.
 
      When TAP_STATE is specified, the JTAG state machine is left in that
@@ -2235,52 +2235,52 @@ commands are not available.
  -- Command: verify_ircapture (enable|disable)
      Verify values captured during IRCAPTURE and returned during IR
      scans.  Default is enabled, but this can be overridden by
-     'verify_jtag'.  This flag is ignored when validating JTAG chain
+     ‘verify_jtag’.  This flag is ignored when validating JTAG chain
      configuration.
 
  -- Command: verify_jtag (enable|disable)
      Enables verification of DR and IR scans, to help detect programming
-     errors.  For IR scans, 'verify_ircapture' must also be enabled.
+     errors.  For IR scans, ‘verify_ircapture’ must also be enabled.
      Default is enabled.
 
 17.2 TAP state names
 ====================
 
-The TAP_STATE names used by OpenOCD in the 'drscan', 'irscan', and
-'pathmove' commands are the same as those used in SVF boundary scan
+The TAP_STATE names used by OpenOCD in the ‘drscan’, ‘irscan’, and
+‘pathmove’ commands are the same as those used in SVF boundary scan
 documents, except that SVF uses IDLE instead of RUN/IDLE.
 
-   * RESET ...  _stable_ (with TMS high); acts as if TRST were pulsed
-   * RUN/IDLE ...  _stable_; don't assume this always means IDLE
-   * DRSELECT
-   * DRCAPTURE
-   * DRSHIFT ...  _stable_; TDI/TDO shifting through the data register
-   * DREXIT1
-   * DRPAUSE ...  _stable_; data register ready for update or more
+   • RESET ...  _stable_ (with TMS high); acts as if TRST were pulsed
+   • RUN/IDLE ...  _stable_; don't assume this always means IDLE
+   • DRSELECT
+   • DRCAPTURE
+   • DRSHIFT ...  _stable_; TDI/TDO shifting through the data register
+   • DREXIT1
+   • DRPAUSE ...  _stable_; data register ready for update or more
      shifting
-   * DREXIT2
-   * DRUPDATE
-   * IRSELECT
-   * IRCAPTURE
-   * IRSHIFT ...  _stable_; TDI/TDO shifting through the instruction
+   • DREXIT2
+   • DRUPDATE
+   • IRSELECT
+   • IRCAPTURE
+   • IRSHIFT ...  _stable_; TDI/TDO shifting through the instruction
      register
-   * IREXIT1
-   * IRPAUSE ...  _stable_; instruction register ready for update or
+   • IREXIT1
+   • IRPAUSE ...  _stable_; instruction register ready for update or
      more shifting
-   * IREXIT2
-   * IRUPDATE
+   • IREXIT2
+   • IRUPDATE
 
 Note that only six of those states are fully "stable" in the face of TMS
 fixed (low except for RESET) and a free-running JTAG clock.  For all the
 others, the next TCK transition changes to a new state.
 
-   * From DRSHIFT and IRSHIFT, clock transitions will produce side
+   • From DRSHIFT and IRSHIFT, clock transitions will produce side
      effects by changing register contents.  The values to be latched in
      upcoming DRUPDATE or IRUPDATE states may not be as expected.
-   * RUN/IDLE, DRPAUSE, and IRPAUSE are reasonable choices after
-     'drscan' or 'irscan' commands, since they are free of JTAG side
+   • RUN/IDLE, DRPAUSE, and IRPAUSE are reasonable choices after
+     ‘drscan’ or ‘irscan’ commands, since they are free of JTAG side
      effects.
-   * RUN/IDLE may have side effects that appear at non-JTAG levels, such
+   • RUN/IDLE may have side effects that appear at non-JTAG levels, such
      as advancing the ARM9E-S instruction pipeline.  Consult the
      documentation for the TAP(s) you are working with.
 
@@ -2297,33 +2297,33 @@ Debugging, OpenOCD also includes some boundary scan commands.
 18.1 SVF: Serial Vector Format
 ==============================
 
-The Serial Vector Format, better known as "SVF", is a way to represent
+The Serial Vector Format, better known as “SVF”, is a way to represent
 JTAG test patterns in text files.  In a debug session using JTAG for its
 transport protocol, OpenOCD supports running such test files.
 
  -- Command: svf filename [-tap TAPNAME] [[-]quiet] [[-]nil]
           [[-]progress] [[-]ignore_error]
      This issues a JTAG reset (Test-Logic-Reset) and then runs the SVF
-     script from 'filename'.
+     script from ‘filename’.
 
      Arguments can be specified in any order; the optional dash doesn't
      affect their semantics.
 
      Command options:
-        - '-tap TAPNAME' ignore IR and DR headers and footers specified
+        − ‘-tap TAPNAME’ ignore IR and DR headers and footers specified
           by the SVF file with HIR, TIR, HDR and TDR commands; instead,
           calculate them automatically according to the current JTAG
           chain configuration, targeting TAPNAME;
-        - '[-]quiet' do not log every command before execution;
-        - '[-]nil' "dry run", i.e., do not perform any operations on the
+        − ‘[-]quiet’ do not log every command before execution;
+        − ‘[-]nil’ "dry run", i.e., do not perform any operations on the
           real interface;
-        - '[-]progress' enable progress indication;
-        - '[-]ignore_error' continue execution despite TDO check errors.
+        − ‘[-]progress’ enable progress indication;
+        − ‘[-]ignore_error’ continue execution despite TDO check errors.
 
 18.2 XSVF: Xilinx Serial Vector Format
 ======================================
 
-The Xilinx Serial Vector Format, better known as "XSVF", is a binary
+The Xilinx Serial Vector Format, better known as “XSVF”, is a binary
 representation of SVF which is optimized for use with Xilinx devices.
 In a debug session using JTAG for its transport protocol, OpenOCD
 supports running such test files.
@@ -2332,19 +2332,19 @@ supports running such test files.
 
  -- Command: xsvf (tapname|plain) filename [virt2] [quiet]
      This issues a JTAG reset (Test-Logic-Reset) and then runs the XSVF
-     script from 'filename'.  When a TAPNAME is specified, the commands
-     are directed at that TAP. When 'virt2' is specified, the XRUNTEST
+     script from ‘filename’.  When a TAPNAME is specified, the commands
+     are directed at that TAP. When ‘virt2’ is specified, the XRUNTEST
      command counts are interpreted as TCK cycles instead of
-     microseconds.  Unless the 'quiet' option is specified, messages are
+     microseconds.  Unless the ‘quiet’ option is specified, messages are
      logged for comments and some retries.
 
 The OpenOCD sources also include two utility scripts for working with
 XSVF; they are not currently installed after building the software.  You
 may find them useful:
 
-   * _svf2xsvf_ ...  converts SVF files into the extended XSVF syntax
-     understood by the 'xsvf' command; see notes below.
-   * _xsvfdump_ ...  converts XSVF files into a text output format;
+   • _svf2xsvf_ ...  converts SVF files into the extended XSVF syntax
+     understood by the ‘xsvf’ command; see notes below.
+   • _xsvfdump_ ...  converts XSVF files into a text output format;
      understands the OpenOCD extensions.
 
 The input format accepts a handful of non-standard extensions.  These
@@ -2371,7 +2371,7 @@ problems.
 
 To use them, you usually need to initialise your RAM controller first;
 consult your SoC's documentation to get the recommended list of register
-operations and translate them to the corresponding 'mww'/'mwb' commands.
+operations and translate them to the corresponding ‘mww’/‘mwb’ commands.
 
 Load the memory testing functions with
 
@@ -2415,18 +2415,18 @@ OpenOCD complies with the remote gdbserver protocol and, as such, can be
 used to debug remote targets.  Setting up GDB to work with OpenOCD can
 involve several components:
 
-   * The OpenOCD server support for GDB may need to be configured.
+   • The OpenOCD server support for GDB may need to be configured.
      *Note GDB Configuration: gdbconfiguration.
-   * GDB's support for OpenOCD may need configuration, as shown in this
+   • GDB's support for OpenOCD may need configuration, as shown in this
      chapter.
-   * If you have a GUI environment like Eclipse, that also will probably
+   • If you have a GUI environment like Eclipse, that also will probably
      need to be configured.
 
 Of course, the version of GDB you use will need to be one which has been
 built to know about the target CPU you're using.  It's probably part of
 the tool chain you're using.  For example, if you are doing
 cross-development for ARM on an x86 PC, instead of using the native x86
-'gdb' command you might use 'arm-none-eabi-gdb' if that's the tool chain
+‘gdb’ command you might use ‘arm-none-eabi-gdb’ if that's the tool chain
 used to compile your code.
 
 20.1 Connecting to GDB
@@ -2467,7 +2467,7 @@ OpenOCD can communicate with GDB in two ways:
      the log output to a file to ensure that the pipe is not saturated
      when using higher debug level outputs.
 
-To list the available OpenOCD commands type 'monitor help' on the GDB
+To list the available OpenOCD commands type ‘monitor help’ on the GDB
 command line.
 
 20.2 Sample GDB session startup
@@ -2496,13 +2496,13 @@ would be written into flash (address 0) and run from there.
      ...
 
 You could then interrupt the GDB session to make the program break, type
-'where' to show the stack, 'list' to show the code around the program
-counter, 'step' through code, set breakpoints or watchpoints, and so on.
+‘where’ to show the stack, ‘list’ to show the code around the program
+counter, ‘step’ through code, set breakpoints or watchpoints, and so on.
 
 20.3 Configuring GDB for OpenOCD
 ================================
 
-OpenOCD supports the gdb 'qSupported' packet, this enables information
+OpenOCD supports the gdb ‘qSupported’ packet, this enables information
 to be sent by the GDB remote server (i.e.  OpenOCD) to GDB. Typical
 information includes packet size and the device's memory map.  You do
 not need to configure the packet size by hand, and the relevant parts of
@@ -2526,8 +2526,8 @@ have such restrictions.
 
 Rather than typing such commands interactively, you may prefer to save
 them in a file and have GDB execute them as it starts, perhaps using a
-'.gdbinit' in your project directory or starting GDB using 'gdb -x
-filename'.
+‘.gdbinit’ in your project directory or starting GDB using ‘gdb -x
+filename’.
 
 20.4 Programming using GDB
 ==========================
@@ -2541,19 +2541,19 @@ working area.
 
 Informing GDB of the memory map of the target will enable GDB to protect
 any flash areas of the target and use hardware breakpoints by default.
-This means that the OpenOCD option 'gdb_breakpoint_override' is not
+This means that the OpenOCD option ‘gdb_breakpoint_override’ is not
 required when using a memory map.  *Note gdb_breakpoint_override:
 gdbbreakpointoverride.
 
-To view the configured memory map in GDB, use the GDB command 'info
-mem'.  All other unassigned addresses within GDB are treated as RAM.
+To view the configured memory map in GDB, use the GDB command ‘info
+mem’.  All other unassigned addresses within GDB are treated as RAM.
 
 GDB 6.8 and higher set any memory area not in the memory map as
 inaccessible.  This can be changed to the old behaviour by using the
 following GDB command
      set mem inaccessible-by-default off
 
-If 'gdb_flash_program enable' is also used, GDB will be able to program
+If ‘gdb_flash_program enable’ is also used, GDB will be able to program
 any flash memory using the vFlash interface.
 
 GDB will look at the target memory map when a load command is given, if
@@ -2566,7 +2566,7 @@ gdb-flash-erase-start:
 *Note Target Events: targetevents, for other GDB programming related
 events.
 
-To verify any flash programming the GDB command 'compare-sections' can
+To verify any flash programming the GDB command ‘compare-sections’ can
 be used.
 
 20.5 Using GDB as a non-intrusive memory inspector
@@ -2597,18 +2597,18 @@ versions set it by default, some does not.
      set remote interrupt-on-connect off
 
 If you switched gdb_memory_map off, you may want to setup GDB memory map
-manually or issue 'set mem inaccessible-by-default off'
+manually or issue ‘set mem inaccessible-by-default off’
 
-Now you can issue GDB command 'target extended-remote ...' and inspect
-memory of a running target.  Do not use GDB commands 'continue', 'step'
-or 'next' as they synchronize GDB with your target and GDB would require
+Now you can issue GDB command ‘target extended-remote ...’ and inspect
+memory of a running target.  Do not use GDB commands ‘continue’, ‘step’
+or ‘next’ as they synchronize GDB with your target and GDB would require
 stopping the target to get the prompt back.
 
 Do not use this mode under an IDE like Eclipse as it caches values of
 previously shown variables.
 
 It's also possible to connect more than one GDB to the same target by
-the target's configuration option '-gdb-max-connections'.  This allows,
+the target's configuration option ‘-gdb-max-connections’.  This allows,
 for example, one GDB to run a script that continuously polls a set of
 variables while other GDB can be used interactively.  Be extremely
 careful in this case, because the two GDB can easily get out-of-sync.
@@ -2617,7 +2617,7 @@ careful in this case, because the two GDB can easily get out-of-sync.
 =================
 
 OpenOCD includes RTOS support, this will however need enabling as it
-defaults to disabled.  It can be enabled by passing '-rtos' arg to the
+defaults to disabled.  It can be enabled by passing ‘-rtos’ arg to the
 target.  *Note RTOS Type: rtostype.
 
 *Note Debugging Programs with Multiple Threads: (gdb)Threads, for
@@ -2631,47 +2631,47 @@ An example setup is below:
 This will attempt to auto detect the RTOS within your application.
 
 Currently supported rtos's include:
-   * 'eCos'
-   * 'ThreadX'
-   * 'FreeRTOS'
-   * 'linux'
-   * 'ChibiOS'
-   * 'embKernel'
-   * 'mqx'
-   * 'uCOS-III'
-   * 'nuttx'
-   * 'RIOT'
-   * 'hwthread' (This is not an actual RTOS. *Note Using OpenOCD SMP
+   • ‘eCos’
+   • ‘ThreadX’
+   • ‘FreeRTOS’
+   • ‘linux’
+   • ‘ChibiOS’
+   • ‘embKernel’
+   • ‘mqx’
+   • ‘uCOS-III’
+   • ‘nuttx’
+   • ‘RIOT’
+   • ‘hwthread’ (This is not an actual RTOS. *Note Using OpenOCD SMP
      with GDB: usingopenocdsmpwithgdb.)
 
 Before an RTOS can be detected, it must export certain symbols;
 otherwise, it cannot be used by OpenOCD. Below is a list of the required
 symbols for each supported RTOS.
 
-'eCos symbols'
+‘eCos symbols’
      Cyg_Thread::thread_list, Cyg_Scheduler_Base::current_thread.
-'ThreadX symbols'
+‘ThreadX symbols’
      _tx_thread_current_ptr, _tx_thread_created_ptr,
      _tx_thread_created_count.
-'FreeRTOS symbols'
+‘FreeRTOS symbols’
      pxCurrentTCB, pxReadyTasksLists, xDelayedTaskList1,
      xDelayedTaskList2, pxDelayedTaskList, pxOverflowDelayedTaskList,
      xPendingReadyList, uxCurrentNumberOfTasks, uxTopUsedPriority.
-'linux symbols'
+‘linux symbols’
      init_task.
-'ChibiOS symbols'
+‘ChibiOS symbols’
      rlist, ch_debug, chSysInit.
-'embKernel symbols'
+‘embKernel symbols’
      Rtos::sCurrentTask, Rtos::sListReady, Rtos::sListSleep,
      Rtos::sListSuspended, Rtos::sMaxPriorities,
      Rtos::sCurrentTaskCount.
-'mqx symbols'
+‘mqx symbols’
      _mqx_kernel_data, MQX_init_struct.
-'uC/OS-III symbols'
+‘uC/OS-III symbols’
      OSRunning, OSTCBCurPtr, OSTaskDbgListPtr, OSTaskQty.
-'nuttx symbols'
+‘nuttx symbols’
      g_readytorun, g_tasklisttable.
-'RIOT symbols'
+‘RIOT symbols’
      sched_threads, sched_num_threads, sched_active_pid, max_threads,
      _tcb_name_offset.
 
@@ -2682,9 +2682,9 @@ taken.
 These RTOSes may require additional OpenOCD-specific file to be linked
 along with the project:
 
-'FreeRTOS'
+‘FreeRTOS’
      contrib/rtos-helpers/FreeRTOS-openocd.c
-'uC/OS-III'
+‘uC/OS-III’
      contrib/rtos-helpers/uCOS-III-openocd.c
 
 20.7 Using OpenOCD SMP with GDB
@@ -2693,10 +2693,10 @@ along with the project:
 OpenOCD includes a pseudo RTOS called _hwthread_ that presents CPU cores
 ("hardware threads") in an SMP system as threads to GDB. With this
 extension, GDB can be used to inspect the state of an SMP system in a
-natural way.  After halting the system, using the GDB command 'info
-threads' will list the context of each active CPU core in the system.
-GDB's 'thread' command can be used to switch the view to a different CPU
-core.  The 'step' and 'stepi' commands can be used to step a specific
+natural way.  After halting the system, using the GDB command ‘info
+threads’ will list the context of each active CPU core in the system.
+GDB's ‘thread’ command can be used to switch the view to a different CPU
+core.  The ‘step’ and ‘stepi’ commands can be used to step a specific
 core while other cores are free-running or remain halted, depending on
 the scheduler-locking mode configured in GDB.
 
@@ -2707,26 +2707,26 @@ the scheduler-locking mode configured in GDB.
      RTOS.
 
 For SMP support following GDB serial protocol packet have been defined :
-   * j - smp status request
-   * J - smp set request
+   • j - smp status request
+   • J - smp set request
 
 OpenOCD implements :
-   * 'jc' packet for reading core id displayed by GDB connection.  Reply
-     is 'XXXXXXXX' (8 hex digits giving core id) or 'E01' for target not
+   • ‘jc’ packet for reading core id displayed by GDB connection.  Reply
+     is ‘XXXXXXXX’ (8 hex digits giving core id) or ‘E01’ for target not
      smp.
-   * 'JcXXXXXXXX' (8 hex digits) packet for setting core id displayed at
+   • ‘JcXXXXXXXX’ (8 hex digits) packet for setting core id displayed at
      next GDB continue (core id -1 is reserved for returning to normal
-     resume mode).  Reply 'E01' for target not smp or 'OK' on success.
+     resume mode).  Reply ‘E01’ for target not smp or ‘OK’ on success.
 
 Handling of this packet within GDB can be done :
-   * by the creation of an internal variable (i.e '_core') by mean of
+   • by the creation of an internal variable (i.e ‘_core’) by mean of
      function allocate_computed_value allowing following GDB command.
           set $_core 1
           #Jc01 packet is sent
           print $_core
           #jc packet is sent and result is affected in $
 
-   * by the usage of GDB maintenance command as described in following
+   • by the usage of GDB maintenance command as described in following
      example (2 cpus in SMP with core id 0 and 1 *note Define CPU
      targets working in SMP: definecputargetsworkinginsmp.).
 
@@ -2752,7 +2752,7 @@ File: openocd.info,  Node: Tcl Scripting API,  Next: FAQ,  Prev: GDB and OpenOCD
 21.1 API rules
 ==============
 
-Tcl commands are stateless; e.g.  the 'telnet' command has a concept of
+Tcl commands are stateless; e.g.  the ‘telnet’ command has a concept of
 currently active target, the Tcl API proc's take this sort of state
 information as an argument to each proc.
 
@@ -2789,18 +2789,18 @@ passed in to the proc in question.
 By "low-level," we mean commands that a human would typically not invoke
 directly.
 
-   * mem2array <VARNAME> <WIDTH> <ADDR> <NELEMS>
+   • mem2array <VARNAME> <WIDTH> <ADDR> <NELEMS>
 
      Read memory and return as a Tcl array for script processing
-   * array2mem <VARNAME> <WIDTH> <ADDR> <NELEMS>
+   • array2mem <VARNAME> <WIDTH> <ADDR> <NELEMS>
 
      Convert a Tcl array to memory locations and write the values
-   * flash banks <DRIVER> <BASE> <SIZE> <CHIP_WIDTH> <BUS_WIDTH>
-     <TARGET> ['driver options' ...]
+   • flash banks <DRIVER> <BASE> <SIZE> <CHIP_WIDTH> <BUS_WIDTH>
+     <TARGET> [‘driver options’ ...]
 
      Return information about the flash banks
 
-   * capture <COMMAND>
+   • capture <COMMAND>
 
      Run <COMMAND> and return full log output that was produced during
      its execution.  Example:
@@ -2808,7 +2808,7 @@ directly.
           > capture "reset init"
 
 OpenOCD commands can consist of two words, e.g.  "flash banks".  The
-'startup.tcl' "unknown" proc will translate this into a Tcl proc called
+‘startup.tcl’ "unknown" proc will translate this into a Tcl proc called
 "flash_banks".
 
 21.3 OpenOCD specific Global Variables
@@ -2818,22 +2818,22 @@ Real Tcl has ::tcl_platform(), and platform::identify, and many other
 variables.  JimTCL, as implemented in OpenOCD creates $ocd_HOSTOS which
 holds one of the following values:
 
-   * cygwin Running under Cygwin
-   * darwin Darwin (Mac-OS) is the underlying operating system.
-   * freebsd Running under FreeBSD
-   * openbsd Running under OpenBSD
-   * netbsd Running under NetBSD
-   * linux Linux is the underlying operating system
-   * mingw32 Running under MingW32
-   * winxx Built using Microsoft Visual Studio
-   * ecos Running under eCos
-   * other Unknown, none of the above.
+   • cygwin Running under Cygwin
+   • darwin Darwin (Mac-OS) is the underlying operating system.
+   • freebsd Running under FreeBSD
+   • openbsd Running under OpenBSD
+   • netbsd Running under NetBSD
+   • linux Linux is the underlying operating system
+   • mingw32 Running under MingW32
+   • winxx Built using Microsoft Visual Studio
+   • ecos Running under eCos
+   • other Unknown, none of the above.
 
 Note: 'winxx' was chosen because today (March-2009) no distinction is
 made between Win32 and Win64.
 
      Note: We should add support for a variable like Tcl variable
-     'tcl_platform(platform)', it should be called 'jim_platform'
+     ‘tcl_platform(platform)’, it should be called ‘jim_platform’
      (because it is jim, not real tcl).
 
 21.4 Tcl RPC server
@@ -2843,16 +2843,16 @@ OpenOCD provides a simple RPC server that allows to run arbitrary Tcl
 commands and receive the results.
 
 To access it, your application needs to connect to a configured TCP port
-(see 'tcl_port').  Then it can pass any string to the interpreter
-terminating it with '0x1a' and wait for the return value (it will be
-terminated with '0x1a' as well).  This can be repeated as many times as
+(see ‘tcl_port’).  Then it can pass any string to the interpreter
+terminating it with ‘0x1a’ and wait for the return value (it will be
+terminated with ‘0x1a’ as well).  This can be repeated as many times as
 desired without reopening the connection.
 
-It is not needed anymore to prefix the OpenOCD commands with 'ocd_' to
-get the results back.  But sometimes you might need the 'capture'
+It is not needed anymore to prefix the OpenOCD commands with ‘ocd_’ to
+get the results back.  But sometimes you might need the ‘capture’
 command.
 
-See 'contrib/rpc_examples/' for specific client implementations.
+See ‘contrib/rpc_examples/’ for specific client implementations.
 
 21.5 Tcl RPC server notifications
 =================================
@@ -2986,7 +2986,7 @@ File: openocd.info,  Node: FAQ,  Next: Tcl Crash Course,  Prev: Tcl Scripting AP
      interrupt_ operation in your idle loops even if you don't otherwise
      change the CPU clock rate.  That operation gates the CPU clock, and
      thus the JTAG clock; which prevents JTAG access.  One consequence
-     is not being able to 'halt' cores which are executing that _wait
+     is not being able to ‘halt’ cores which are executing that _wait
      for interrupt_ operation.
 
      To set the JTAG frequency use the command:
@@ -3026,7 +3026,7 @@ File: openocd.info,  Node: FAQ,  Next: Tcl Crash Course,  Prev: Tcl Scripting AP
   5. LPC2000 Flash When erasing or writing LPC2000 on-chip flash, the
      operation fails at random.
 
-     Make sure the core frequency specified in the 'flash lpc2000' line
+     Make sure the core frequency specified in the ‘flash lpc2000’ line
      matches the clock at the time you're programming the flash.  If
      you've specified the crystal's frequency, make sure the PLL is
      disabled.  If you've specified the full core speed (e.g.  60MHz),
@@ -3073,7 +3073,7 @@ File: openocd.info,  Node: FAQ,  Next: Tcl Crash Course,  Prev: Tcl Scripting AP
 
      This warning doesn't indicate any serious problem, as long as you
      don't want to debug your core right out of reset.  Your .cfg file
-     specified 'reset_config trst_and_srst srst_pulls_trst' to tell
+     specified ‘reset_config trst_and_srst srst_pulls_trst’ to tell
      OpenOCD that either your board, your debugger or your target uC
      (e.g.  LPC2000) can't assert the two reset signals independently.
      With this setup, it's not possible to halt the core right out of
@@ -3105,8 +3105,8 @@ File: openocd.info,  Node: FAQ,  Next: Tcl Crash Course,  Prev: Tcl Scripting AP
   11. LPC2000 Flash In the configuration file in the section where flash
      device configurations are described, there is a parameter for
      specifying the clock frequency for LPC2000 internal flash devices
-     (e.g.  'flash bank $_FLASHNAME lpc2000 0x0 0x40000 0 0 $_TARGETNAME
-     lpc2000_v1 14746 calc_checksum'), which must be specified in
+     (e.g.  ‘flash bank $_FLASHNAME lpc2000 0x0 0x40000 0 0 $_TARGETNAME
+     lpc2000_v1 14746 calc_checksum’), which must be specified in
      kilohertz.  However, I do have a quartz crystal of a frequency that
      contains fractions of kilohertz (e.g.  14,745,600 Hz, i.e.
      14,745.600 kHz).  Is it possible to specify real numbers for the
@@ -3135,8 +3135,8 @@ File: openocd.info,  Node: FAQ,  Next: Tcl Crash Course,  Prev: Tcl Scripting AP
      You can use the "scan_chain" command to verify and display the tap
      order.
 
-     Also, some commands can't execute until after 'init' has been
-     processed.  Such commands include 'nand probe' and everything else
+     Also, some commands can't execute until after ‘init’ has been
+     processed.  Such commands include ‘nand probe’ and everything else
      that needs to write to controller registers, perhaps for setting up
      DRAM and loading it with code.
 
@@ -3159,20 +3159,20 @@ File: openocd.info,  Node: FAQ,  Next: Tcl Crash Course,  Prev: Tcl Scripting AP
      or FPGA) you could place it before or after the STM32 chip in the
      chain.  For example:
 
-        * OpenOCD_TDI(output) -> STM32 TDI Pin (BS Input)
-        * STM32 BS TDO (output) -> STM32 Cortex-M3 TDI (input)
-        * STM32 Cortex-M3 TDO (output) -> SM32 TDO Pin
-        * STM32 TDO Pin (output) -> Xilinx TDI Pin (input)
-        * Xilinx TDO Pin -> OpenOCD TDO (input)
+        • OpenOCD_TDI(output) -> STM32 TDI Pin (BS Input)
+        • STM32 BS TDO (output) -> STM32 Cortex-M3 TDI (input)
+        • STM32 Cortex-M3 TDO (output) -> SM32 TDO Pin
+        • STM32 TDO Pin (output) -> Xilinx TDI Pin (input)
+        • Xilinx TDO Pin -> OpenOCD TDO (input)
 
      The "jtag device" commands would thus be in the order shown below.
      Note:
 
-        * jtag newtap Xilinx tap -irlen ...
-        * jtag newtap stm32 cpu -irlen ...
-        * jtag newtap stm32 bs -irlen ...
-        * # Create the debug target and say where it is
-        * target create stm32.cpu -chain-position stm32.cpu ...
+        • jtag newtap Xilinx tap -irlen ...
+        • jtag newtap stm32 cpu -irlen ...
+        • jtag newtap stm32 bs -irlen ...
+        • # Create the debug target and say where it is
+        • target create stm32.cpu -chain-position stm32.cpu ...
 
   14. SYSCOMP Sometimes my debugging session terminates with an error.
      When I look into the log file, I can see these error messages:
@@ -3248,7 +3248,7 @@ BTW: To set a variable, you actually use the command "set", as in "set
 VARNAME VALUE" much like the ancient BASIC language "let x = 1"
 statement, but without the equal sign.
 
-   * [square-brackets]
+   • [square-brackets]
      [square-brackets] are command substitutions.  It operates much like
      Unix Shell 'back-ticks'.  The result of a [square-bracket]
      operation is exactly 1 string.  Remember Rule #1 - Everything is a
@@ -3259,13 +3259,13 @@ statement, but without the equal sign.
               # Tcl example
               set X [date]
               puts "The Date is: $X"
-   * "double-quoted-things"
+   • "double-quoted-things"
      "double-quoted-things" are just simply quoted text.  $VARIABLES and
      [square-brackets] are expanded in place - the result however is
      exactly 1 string.  Remember Rule #1 - Everything is a string
               set x "Dinner"
               puts "It is now \"[date]\", $x is in 1 hour"
-   * {Curly-Braces}
+   • {Curly-Braces}
      {Curly-Braces} are magic: $VARIABLES and [square-brackets] are
      parsed, but are NOT expanded or executed.  {Curly-Braces} are like
      'single-quote' operators in BASH shell scripts, with the added
@@ -3419,13 +3419,13 @@ the same basic way.
 Where: In many configuration files
 Example: source [find FILENAME]
 Remember the parsing rules
-  1. The 'find' command is in square brackets, and is executed with the
+  1. The ‘find’ command is in square brackets, and is executed with the
      parameter FILENAME. It should find and return the full path to a
      file with that name; it uses an internal search path.  The RESULT
      is a string, which is substituted into the command line in place of
-     the bracketed 'find' command.  (Don't try to use a FILENAME which
+     the bracketed ‘find’ command.  (Don't try to use a FILENAME which
      includes the "#" character.  That character begins Tcl comments.)
-  2. The 'source' command is executed with the resulting filename; it
+  2. The ‘source’ command is executed with the resulting filename; it
      reads a file and executes as a script.
 
 23.6.2 format command
@@ -3468,7 +3468,7 @@ Where: Various TARGET scripts.
      When the ascii text is parsed, the $_TARGETNAME becomes a simple
      string, the name of the target which happens to be a TARGET
      (object) command.
-  2. The 2nd parameter to the '-event' parameter is a TCBODY
+  2. The 2nd parameter to the ‘-event’ parameter is a TCBODY
      There are 4 examples:
        1. The TCLBODY is a simple string that happens to be a proc name
        2. The TCLBODY is several simple commands separated by semicolons
@@ -3526,7 +3526,7 @@ Appendix A The GNU Free Documentation License.
 
                       Version 1.2, November 2002
 
-     Copyright (C) 2000,2001,2002 Free Software Foundation, Inc.
+     Copyright © 2000,2001,2002 Free Software Foundation, Inc.
      51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
 
      Everyone is permitted to copy and distribute verbatim copies
@@ -3535,7 +3535,7 @@ Appendix A The GNU Free Documentation License.
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -4103,14 +4103,14 @@ OpenOCD Concept Index
 * hwthread:                              GDB and OpenOCD.    (line  285)
 * image dumping:                         General Commands.   (line  312)
 * image loading:                         General Commands.   (line  312)
-* initialization:                        Server Configuration.
-                                                             (line    6)
 * init_board procedure:                  Config File Guidelines.
                                                              (line  241)
-* init_targets procedure:                Config File Guidelines.
-                                                             (line  514)
 * init_target_events procedure:          Config File Guidelines.
                                                              (line  559)
+* init_targets procedure:                Config File Guidelines.
+                                                             (line  514)
+* initialization:                        Server Configuration.
+                                                             (line    6)
 * interface config file:                 Debug Adapter Configuration.
                                                              (line    6)
 * ITM:                                   Architecture and Core Commands.
@@ -4358,9 +4358,9 @@ Command and Driver Index
                                                              (line   49)
 * adapter usb location:                  Debug Adapter Configuration.
                                                              (line   58)
+* add_script_search_dir:                 General Commands.   (line   85)
 * addreg:                                Architecture and Core Commands.
                                                              (line 1168)
-* add_script_search_dir:                 General Commands.   (line   85)
 * aduc702x:                              Flash Commands.     (line  598)
 * ambiqmicro:                            Flash Commands.     (line  607)
 * ambiqmicro mass_erase:                 Flash Commands.     (line  635)
@@ -4415,14 +4415,14 @@ Command and Driver Index
                                                              (line  687)
 * arm11 vcr:                             Architecture and Core Commands.
                                                              (line  692)
-* arm720t cp15:                          Architecture and Core Commands.
-                                                             (line  435)
 * arm7_9 dbgrq:                          Architecture and Core Commands.
                                                              (line  397)
 * arm7_9 dcc_downloads:                  Architecture and Core Commands.
                                                              (line  407)
 * arm7_9 fast_memory_access:             Architecture and Core Commands.
                                                              (line  418)
+* arm720t cp15:                          Architecture and Core Commands.
+                                                             (line  435)
 * arm9 vector_catch:                     Architecture and Core Commands.
                                                              (line  450)
 * arm920t cache_info:                    Architecture and Core Commands.
@@ -4486,10 +4486,6 @@ Command and Driver Index
 * cc26xx:                                Flash Commands.     (line  915)
 * cc3220sf:                              Flash Commands.     (line  925)
 * cfi:                                   Flash Commands.     (line  293)
-* cmsis-dap:                             Debug Adapter Configuration.
-                                                             (line   99)
-* cmsis-dap info:                        Debug Adapter Configuration.
-                                                             (line  129)
 * cmsis_dap_backend:                     Debug Adapter Configuration.
                                                              (line  114)
 * cmsis_dap_serial:                      Debug Adapter Configuration.
@@ -4498,6 +4494,10 @@ Command and Driver Index
                                                              (line  123)
 * cmsis_dap_vid_pid:                     Debug Adapter Configuration.
                                                              (line  103)
+* cmsis-dap:                             Debug Adapter Configuration.
+                                                             (line   99)
+* cmsis-dap info:                        Debug Adapter Configuration.
+                                                             (line  129)
 * cortex_a cache_info:                   Architecture and Core Commands.
                                                              (line  708)
 * cortex_a dacrfixup [on|off]:           Architecture and Core Commands.
@@ -4534,13 +4534,13 @@ Command and Driver Index
 * davinci:                               Flash Commands.     (line 2329)
 * debug_level:                           General Commands.   (line   66)
 * drscan:                                JTAG Commands.      (line   42)
+* du_select:                             Architecture and Core Commands.
+                                                             (line 1155)
 * dummy:                                 Debug Adapter Configuration.
                                                              (line  133)
 * dummy <1>:                             Architecture and Core Commands.
                                                              (line  190)
 * dump_image:                            General Commands.   (line  312)
-* du_select:                             Architecture and Core Commands.
-                                                             (line 1155)
 * echo:                                  General Commands.   (line   76)
 * efm32:                                 Flash Commands.     (line  937)
 * ep93xx:                                Debug Adapter Configuration.
@@ -4771,7 +4771,6 @@ Command and Driver Index
 * jtag tapdisable:                       TAP Declaration.    (line  298)
 * jtag tapenable:                        TAP Declaration.    (line  303)
 * jtag tapisenabled:                     TAP Declaration.    (line  308)
-* jtagspi:                               Flash Commands.     (line  328)
 * jtag_dpi:                              Debug Adapter Configuration.
                                                              (line  852)
 * jtag_dpi_set_address:                  Debug Adapter Configuration.
@@ -4786,6 +4785,7 @@ Command and Driver Index
                                                              (line  138)
 * jtag_rclk:                             Debug Adapter Configuration.
                                                              (line 1006)
+* jtagspi:                               Flash Commands.     (line  328)
 * kinetis:                               Flash Commands.     (line  997)
 * kinetis create_banks:                  Flash Commands.     (line 1012)
 * kinetis disable_wdog:                  Flash Commands.     (line 1080)
@@ -5093,9 +5093,9 @@ Command and Driver Index
 * target current:                        CPU Configuration.  (line   37)
 * target names:                          CPU Configuration.  (line   40)
 * target types:                          CPU Configuration.  (line   71)
-* targets:                               CPU Configuration.  (line   46)
 * target_request debugmsgs:              Architecture and Core Commands.
                                                              (line 1494)
+* targets:                               CPU Configuration.  (line   46)
 * tcl_notifications:                     Tcl Scripting API.  (line  124)
 * tcl_port:                              Server Configuration.
                                                              (line  124)
@@ -5120,8 +5120,6 @@ Command and Driver Index
 * trunc:                                 General Commands.   (line  268)
 * ulink:                                 Debug Adapter Configuration.
                                                              (line  745)
-* usbprog:                               Debug Adapter Configuration.
-                                                             (line  685)
 * usb_blaster:                           Debug Adapter Configuration.
                                                              (line  405)
 * usb_blaster_device_desc:               Debug Adapter Configuration.
@@ -5134,6 +5132,8 @@ Command and Driver Index
                                                              (line  425)
 * usb_blaster_vid_pid:                   Debug Adapter Configuration.
                                                              (line  417)
+* usbprog:                               Debug Adapter Configuration.
+                                                             (line  685)
 * verify_image:                          General Commands.   (line  352)
 * verify_image_checksum:                 General Commands.   (line  358)
 * verify_ircapture:                      JTAG Commands.      (line  111)
