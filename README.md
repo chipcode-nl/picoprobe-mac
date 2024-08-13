@@ -13,12 +13,24 @@ Debugging the code inside the RP2040 chip may be done with another Raspberry Pi
 Pico board. A new version of the Open On-Chip Debugger (OpenOCD) is needed to use 
 the development board as debug probe. 
 
-
 The source code for OpenOCD is available at the 
 [Raspberry Pi Github](https://github.com/raspberrypi/openocd).
 
 This Visual Studio Code extension contains the compiled version of OpenOCD with
-support for the Raspberry Pi Pico probe.
+support for the Raspberry Pi debug probe.
+
+# Changes
+Comment: The Rasberry Pi debug probe was named 'picoprobe' in the beginning.
+The name was changed to 'debugprobe' in the OpenOCD source code.
+
+The server configuration for OpenOCD was changed to 'interface/cmsis-dap.cfg' and
+'target/rp2040.cfg' to use the Raspberry Pi Pico as a debug probe. This was an unfortunate
+breaking change for the Raspberry Pi Pico debug probe caused by the Raspberry Pi Foundation.
+
+On request of the Raspberry Pi Foundation, the name 'picoprobe' was changed to 'debugprobe' and
+the Raspberry Pi logo was removed.
+
+If you have on older version of the Raspberry Pi Pico debug probe, you must update the firmware.
 
 # Install
 
@@ -39,15 +51,16 @@ brew install libusb libusb-compat libftdi hidapi
 ## OpenOCD version with debugprobe
 In Visual Studio Code goto extensions (shift+cmd+x), search for 'chipcode-nl' and install the extension suitable for your operating system.
 
-The extension has paths for OpenOCD. You can use it in tasks.json.
+The extension has paths for OpenOCD. You can use it in launch.json.
 
 - openocd.bin
 
 ```javascript
 "server": "${config:openocd.bin}/openocd",
 "serverArgs": [
-  "-f", "interface/picoprobe.cfg",
+  "-f", "interface/cmsis-dap.cfg",
   "-f", "target/rp2040.cfg",
+  "-c", "adapter speed 5000",
 ],
 ```
 
