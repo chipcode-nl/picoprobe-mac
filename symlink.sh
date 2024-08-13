@@ -1,6 +1,6 @@
 #!/bin/sh
 # Create symlinks for OpenOCD on macOS
-VERSION=1.0.8
+VERSION=1.0.9
 PACKAGE=~/.vscode/extensions/chipcode-nl.picoprobe-mac-${VERSION}
 OPEN_OCD_PATH=${PACKAGE}/bin
 
